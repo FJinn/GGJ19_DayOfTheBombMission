@@ -109,6 +109,7 @@ public class Tile : MonoBehaviour
         }
     }
 
+    // for player keep moving
     public bool ContinueToNextTile(Vector3 playerPosition)
     {
         CalculateCurrentSide(playerPosition);
@@ -248,6 +249,7 @@ public class Tile : MonoBehaviour
     /// <param name="patternID"></param>
     public void InitializePattern(int patternID)
     {
+        this.patternID = patternID;
         if(patternID == 1)
         {
             PatternOne();
