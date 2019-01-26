@@ -32,6 +32,11 @@ public class Tile : MonoBehaviour
     
     public int patternID;
 
+    /// <summary>
+    /// 0 = top, 1 = left, 2 = bottom, 3 = right
+    /// </summary>
+    [SerializeField] int currentSide;
+
     [SerializeField] Vector3 currentPosition;
     /// <summary>
     /// put currentDirection into nextLandPostisions as index
@@ -76,24 +81,77 @@ public class Tile : MonoBehaviour
         }
     }
 
+    void CalculateCurrentSide(Vector3 playerPosition)
+    {
+        if((playerPosition.x > transform.position.x && playerPosition.y > transform.position.y) ||
+           (playerPosition.x < transform.position.x && playerPosition.y > transform.position.y) )
+        {
+            // top
+            currentSide = 0;
+        }
+        else if((playerPosition.x < transform.position.x && playerPosition.y < transform.position.y) ||
+                (playerPosition.x < transform.position.x && playerPosition.y > transform.position.y) )
+        {
+            // left
+            currentSide = 1;
+        }
+        else if((playerPosition.x < transform.position.x && playerPosition.y < transform.position.y) ||
+                (playerPosition.x > transform.position.x && playerPosition.y < transform.position.y) )
+        {
+            // bottom
+            currentSide = 2;
+        }
+        else if ((playerPosition.x > transform.position.x && playerPosition.y < transform.position.y) ||
+                 (playerPosition.x > transform.position.x && playerPosition.y > transform.position.y) )
+        {
+            // right
+            currentSide = 3;
+        }
+    }
+
+    public bool ContinueToNextTile(Vector3 playerPosition)
+    {
+        CalculateCurrentSide(playerPosition);
+
+        if (currentSide >= 0 && currentSide <= 3 && connectedTiles[currentSide] != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// use ContinueToNextTile() first, to check true or false
+    /// </summary>
+    /// <returns></returns>
+    public Tile GetNextTile()
+    {
+        return connectedTiles[currentSide];
+    }
+
     public void PlaceTileOnTop(Tile selectedTile)
     {
         connectedTiles[0] = selectedTile;
+        selectedTile.PlaceTileOnBottom(this);
     }
 
     public void PlaceTileOnLeft(Tile selectedTile)
     {
         connectedTiles[1] = selectedTile;
+        selectedTile.PlaceTileOnRight(this);
     }
 
     public void PlaceTileOnBottom(Tile selectedTile)
     {
         connectedTiles[2] = selectedTile;
+        selectedTile.PlaceTileOnTop(this);
     }
 
     public void PlaceTileOnRight(Tile selectedTile)
     {
         connectedTiles[3] = selectedTile;
+        selectedTile.PlaceTileOnLeft(this);
     }
 
     /// <summary>
