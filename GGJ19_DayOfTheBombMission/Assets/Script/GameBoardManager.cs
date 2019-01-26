@@ -33,13 +33,22 @@ public class GameBoardManager : MonoBehaviour
         array = new int[boardSize, boardSize];
     }
 
-    void PlaceTile()
+    private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            PlaceTile();
+            Debug.Log("Place");
+        }
+    }
+
+    void PlaceTile()
+    {   
         truePos.x = Mathf.Floor(target.transform.position.x / gridSize) * gridSize;
         truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
         truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
 
-        tile.transform.position = truePos;
+        Instantiate(tile, truePos, Quaternion.identity);
     }
 
 }
