@@ -134,10 +134,36 @@ public class GameBoardManager : MonoBehaviour
 
         Tile tempTile = Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
        
-        gameBoard[(int)truePos.x + 4, (int)truePos.z + +5] = tempTile;
+        gameBoard[(int)truePos.x + 4, (int)truePos.z + 5] = tempTile;
 
         tempTile.InitializeTile();
         tempTile.InitializePattern(tempTile.patternID);
+
+        if(truePos.x + 3  >= 0 && truePos.x + 3 < 10 && truePos.z + 5 >=0 && truePos.z + 5 < 10
+            && gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].blankTile == 1)
+        {
+            // right
+            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 3, (int)truePos.z + 5]);
+        }
+        if (truePos.x + 5 >= 0 && truePos.x + 5 < 10 && truePos.z + 5>= 0 && truePos.z + 5< 10
+            && gameBoard[(int)truePos.x + 5, (int)truePos.z + 5].blankTile == 1)
+        {
+            // left
+            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 5, (int)truePos.z + 5]);
+        }
+        if (truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 6 >= 0 && truePos.z + 6 < 10
+            && gameBoard[(int)truePos.x + 4, (int)truePos.z + 6].blankTile == 1)
+        {
+            // bottom
+            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 4, (int)truePos.z + 6]);
+        }
+        if (truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 4 >= 0 && truePos.z + 4 < 10
+            && gameBoard[(int)truePos.x + 4, (int)truePos.z + 4].blankTile == 1)
+        {
+            // top
+            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 4, (int)truePos.z + 4]);
+        }
+
 
     }
 

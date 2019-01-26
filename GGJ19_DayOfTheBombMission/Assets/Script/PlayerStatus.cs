@@ -10,12 +10,20 @@ public class PlayerStatus : MonoBehaviour
 
     public bool isStunned = false;
 
+    private int num = 0;
+
     private void Update()
     {
         CapLifeMax();
         Die();
         if(GameStateManager.Instance.currentGameState == GameState.PLAYER_TURN)
-        {
+        {   
+            for(int i=0;i<GameStateManager.Instance.playerList.Count;i++)
+            {
+                GameStateManager.Instance.playerList[i].GetComponent<PlayerStatus>().playerID = num;
+                num++;
+            }
+            num = 0;
             if (GameStateManager.Instance.currentPlayerID == playerID)
             {
                 GameStateManager.Instance.currentPlayer = this.gameObject;
