@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
             
         }
-        Timer();
+        //Timer();
     }
 
     void Timer()

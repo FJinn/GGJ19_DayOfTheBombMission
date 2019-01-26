@@ -81,8 +81,5 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        Debug.Log(currentGameState);
-    }
+
 }

@@ -30,6 +30,8 @@ public class PlayerStatus : MonoBehaviour
                 }              
             }
         }
+
+        Debug.Log(this.gameObject.transform.position + " " + this.gameObject.name);
     }
 
     void CapLifeMax()
