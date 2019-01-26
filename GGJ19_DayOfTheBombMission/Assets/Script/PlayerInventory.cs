@@ -97,7 +97,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            emptyTileHolder = Instantiate(emptyTile, transform.position, Quaternion.identity);
+            emptyTileHolder = Instantiate(emptyTile, new Vector3(0, -20, 0), Quaternion.identity);
             int j = Random.Range(1, 11);
             emptyTileHolder.GetComponent<Tile>().InitializePattern(j);
             tileList.Add(emptyTileHolder.GetComponent<Tile>());

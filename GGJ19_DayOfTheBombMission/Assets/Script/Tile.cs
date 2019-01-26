@@ -53,7 +53,7 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// index stands for the current position in terms of direction
     /// </summary>
-    [SerializeField]public Vector3[] nextLandPositions = new Vector3[8];
+    public Vector3[] nextLandPositions = new Vector3[8];
     /// <summary>
     /// 0 = top, 1 = left, 2 = down, 3 = right
     /// </summary>

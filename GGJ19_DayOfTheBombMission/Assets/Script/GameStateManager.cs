@@ -81,5 +81,12 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-
+    private void Update()
+    {
+        if(currentPlayerID == 4)
+        {
+            currentGameState = GameState.PLAYER_MOVE;
+            currentPlayerID = 0;
+        }
+    }
 }

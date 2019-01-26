@@ -137,6 +137,7 @@ public class GameBoardManager : MonoBehaviour
         gameBoard[(int)truePos.x + 4, (int)truePos.z + +5] = tempTile;
 
         tempTile.InitializeTile();
+        tempTile.InitializePattern(tempTile.patternID);
 
     }
 
