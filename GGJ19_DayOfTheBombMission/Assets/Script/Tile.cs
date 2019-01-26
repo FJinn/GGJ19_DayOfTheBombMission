@@ -292,9 +292,7 @@ public class Tile : MonoBehaviour
         InitializeSpecialEffect();
     }
 
-    /// <summary>
-    /// initialize special effect
-    /// </summary>
+    // initialize special effect
     void InitializeSpecialEffect()
     {
         float value = Random.value;
@@ -314,6 +312,56 @@ public class Tile : MonoBehaviour
         else if (value > 0.75)
         {
             myEffect = SpecialEffect.NONE;
+        }
+    }
+
+    // use this function before move
+    public void DoSpecialEffect(PlayerStatus ps)
+    {
+        if(playerCrossed >= 2)
+        {
+            if (myEffect == SpecialEffect.BOMB)
+            {
+                DestroyTile();
+            }
+            else if(myEffect == SpecialEffect.LIFE)
+            {
+                ps.playerLife++;
+            }
+            else if (myEffect == SpecialEffect.STUN)
+            {
+                //
+            }
+        }
+    }
+
+    void DestroyTile()
+    {
+        for(int i=0; i<connectedTiles.Length; i++)
+        {
+            if(connectedTiles[i] != null)
+            {
+                int tempNum = -1;
+
+                if(i == 0)
+                {
+                    tempNum = 2;
+                }
+                else if(i == 1)
+                {
+                    tempNum = 3;
+                }
+                else if (i == 2)
+                {
+                    tempNum = 0;
+                }
+                else if (i == 3)
+                {
+                    tempNum = 1;
+                }
+
+                connectedTiles[i].connectedTiles[tempNum] = null;
+            }
         }
     }
 
