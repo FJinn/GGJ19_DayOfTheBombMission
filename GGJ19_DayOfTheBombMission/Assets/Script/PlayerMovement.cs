@@ -70,6 +70,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, target.z);
             }
+
+            float dis = Vector3.Distance(transform.position, target);
+            if(dis < 0.5f)
+            {
+                transform.position = target;
+            }
         }
         else
         {
