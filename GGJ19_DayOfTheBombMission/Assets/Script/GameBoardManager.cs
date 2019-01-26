@@ -33,7 +33,7 @@ public class GameBoardManager : MonoBehaviour
         array = new int[boardSize, boardSize];
     }
 
-    private void LateUpdate()
+    void PlaceTile()
     {
         truePos.x = Mathf.Floor(target.transform.position.x / gridSize) * gridSize;
         truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
@@ -41,8 +41,5 @@ public class GameBoardManager : MonoBehaviour
 
         tile.transform.position = truePos;
     }
-
-
-
 
 }
