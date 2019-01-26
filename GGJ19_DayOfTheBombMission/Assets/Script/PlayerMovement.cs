@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 target;
 
     bool move = false;
+    bool runTime = false;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
 
-        if(boardPos.x >=10 || boardPos.x < 0 || boardPos.z >=10 || boardPos.z < 0)
+        if(boardPos.x >10 || boardPos.x < 0 || boardPos.z >10 || boardPos.z < 0)
         {
             GameStateManager.Instance.playerList.Remove(this.gameObject);
             Destroy(gameObject);
@@ -44,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
             //transform.position = target;
             move = true;
         }
-        if(move)
-        Moving();
+
+        if (move)
+            Moving();
+        else if(runTime)
+            Timer();
     }
 
     void Moving()
@@ -78,8 +82,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Timer();
             move = false;
+            runTime = true;
         }
     }
 
@@ -88,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         if(counter >= timer)
         {
             counter = 0;
-
+            runTime = false;
             currentTile.playerCrossed++;
             if (currentTile.ContinueToNextTile(transform.position))
             {

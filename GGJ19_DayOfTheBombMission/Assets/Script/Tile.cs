@@ -127,7 +127,7 @@ public class Tile : MonoBehaviour
         }
         else
         {
-            currentSide = -1;
+            currentSide = 4;
         }
     }
 
