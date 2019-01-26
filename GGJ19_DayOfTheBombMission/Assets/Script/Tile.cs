@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Direction
+{
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT,
+    LEFT_TOP,
+    LEFT_BOTTOM,
+    RIGHT_TOP,
+    RIGHT_BOTTOM
+}
+
 public class Tile : MonoBehaviour
 {
     public enum SpecialEffect
@@ -10,18 +22,6 @@ public class Tile : MonoBehaviour
         LIFE,
         STUN,
         NONE
-    }
-
-    public enum Direction
-    {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT,
-        LEFT_TOP,
-        LEFT_BOTTOM,
-        RIGHT_TOP,
-        RIGHT_BOTTOM
     }
 
     SpecialEffect myEffect;
@@ -46,7 +46,7 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// index stands for the current position in terms of direction
     /// </summary>
-    Vector3[] nextLandPositions = new Vector3[8];
+    public Vector3[] nextLandPositions = new Vector3[8];
     /// <summary>
     /// 0 = top, 1 = left, 2 = down, 3 = right
     /// </summary>
@@ -159,7 +159,7 @@ public class Tile : MonoBehaviour
     /// get direction for nextLandPositions[(int)currentDirection]
     /// </summary>
     /// <returns></returns>
-    Direction GetCurrentDirection(Vector3 currentLocation)
+    public Direction GetCurrentDirection(Vector3 currentLocation)
     {
         currentPosition = currentLocation;
         for(int i=0; i<landPositions.Length; i++)
