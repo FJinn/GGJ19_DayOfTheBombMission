@@ -24,6 +24,8 @@ public class GameStateManager : MonoBehaviour
     public float delayTimer = 0f;
     public float delayDuration = 2f;
 
+    public GameObject[] playerList;
+
     void Awake()
     {
         if(instance == null)
@@ -43,6 +45,35 @@ public class GameStateManager : MonoBehaviour
         {
             delayTimer = 0;
             currentGameState = GameState.PLAYER_TURN;
+        }
+    }
+
+    private void Start()
+    { 
+        for(int i=0;i<playerList.Length;i++)
+        {   
+            Randomize:
+                int num = Random.Range(-4, 5);
+                int num2 = Random.Range(0, 2);
+                if(num2 == 0)
+                {
+                    playerList[i].transform.position = new Vector3(num + 0.25f, playerList[i].transform.position.y, playerList[i].transform.position.z);
+                }
+                else
+                {
+                    playerList[i].transform.position = new Vector3(num - 0.25f, playerList[i].transform.position.y, playerList[i].transform.position.z);
+                }
+
+                for(int j=0;j<playerList.Length;j++)
+                {
+                    if(i!=j)
+                    {
+                        if(playerList[i].transform.position.x == playerList[j].transform.position.x)
+                        {
+                            goto Randomize;
+                        }
+                    }
+                }
         }
     }
 

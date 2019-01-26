@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 086a4fa6985c69941874de6ca2827e52, type: 3}
+  - {fileID: 2100000, guid: 3ea876aa7e4f24e4b81dc3d9ddaa4c6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,4 +92,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCrossed: 0
   patternID: 0
+  currentSide: 0
   currentPosition: {x: 0, y: 0, z: 0}
+  nextLandPositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
