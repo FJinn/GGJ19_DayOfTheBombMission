@@ -24,7 +24,7 @@ public class GameStateManager : MonoBehaviour
     public float delayTimer = 0f;
     public float delayDuration = 0.5f;
 
-    public GameObject[] playerList;
+    public List<GameObject> playerList = new List<GameObject>();
 
     void Awake()
     {
@@ -50,12 +50,12 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     { 
-        for(int i=0;i<playerList.Length;i++)
+        for(int i=0;i<playerList.Count;i++)
         {   
             Randomize:
                 int num = Random.Range(-4, 5);
                 playerList[i].transform.position = new Vector3(num, playerList[i].transform.position.y, playerList[i].transform.position.z);
-            for (int j = 0; j < playerList.Length; j++)
+            for (int j = 0; j < playerList.Count; j++)
             {
                 if (i != j)
                 {
@@ -67,7 +67,7 @@ public class GameStateManager : MonoBehaviour
             }
         }
 
-        for (int x = 0; x < playerList.Length; x++)
+        for (int x = 0; x < playerList.Count; x++)
         {
             int num2 = Random.Range(0, 2);
             if (num2 == 0)

@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(boardPos.x >=10 || boardPos.x < 0 || boardPos.z >=10 || boardPos.z < 0)
         {
+            GameStateManager.Instance.playerList.Remove(this.gameObject);
             Destroy(gameObject);
         }
 
@@ -51,11 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(transform.position != target)
         {
-            if (transform.position.x <= target.x + 0.3f || transform.position.x >= target.x - 0.3f)
-            {
-                transform.position = new Vector3(target.x, transform.position.y, transform.position.z);
-            }
-            else if (transform.position.x > target.x)
+            if (transform.position.x > target.x)
             {
                 transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
             }
@@ -64,18 +61,19 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.z);
             }
 
-
-            if (transform.position.z <= target.z + 0.3f && transform.position.z >= target.z - 0.3f)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, target.z);
-            }
-            else if (transform.position.z > target.z)
+            if (transform.position.z > target.z)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
             }
             else if (transform.position.z < target.z)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.1f);
+            }
+
+            float dis = Vector3.Distance(transform.position, target);
+            if (dis < 0.5f)
+            {
+                transform.position = target;
             }
         }
         else
