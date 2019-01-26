@@ -73,13 +73,22 @@ public class GameStateManager : MonoBehaviour
             if (num2 == 0)
             {
                 playerList[x].transform.position = new Vector3(playerList[x].transform.position.x + 0.25f, playerList[x].transform.position.y, playerList[x].transform.position.z);
+                playerList[x].GetComponent<PlayerMovement>().myDirection = Direction.BOTTOM_LEFT;
             }
             else
             {
                 playerList[x].transform.position = new Vector3(playerList[x].transform.position.x - 0.25f, playerList[x].transform.position.y, playerList[x].transform.position.z);
+                playerList[x].GetComponent<PlayerMovement>().myDirection = Direction.BOTTOM_RIGHT;
             }
         }
     }
 
-
+    private void Update()
+    {
+        if(currentPlayerID == 4)
+        {
+            currentGameState = GameState.PLAYER_MOVE;
+            currentPlayerID = 0;
+        }
+    }
 }
