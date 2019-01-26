@@ -199,10 +199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardSize: 10
-  tileGO: {fileID: 6414381586935841403, guid: 7aed4d01de16fb34080e3da64dcc5a55, type: 3}
+  tileGO: {fileID: 4924642289093760413, guid: d6ef5d9bf43941b4e95b3fe812e61c12, type: 3}
   target: {fileID: 1639938260}
   gridSize: 1
-  player: {fileID: 0}
+  player: {fileID: 1788558137}
 --- !u!4 &172437099
 Transform:
   m_ObjectHideFlags: 0
@@ -329,13 +329,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492638876}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.25, y: 2.09, z: 10.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1001 &658652259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -598,10 +598,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerID: 0
-  currentPlayer: {fileID: 0}
+  currentPlayer: {fileID: 1788558137}
   currentGameState: 0
   delayTimer: 0
   delayDuration: 2
+  playerList:
+  - {fileID: 1788558137}
+  - {fileID: 381356261}
+  - {fileID: 1829473817}
+  - {fileID: 1728797038}
 --- !u!4 &1489734414
 Transform:
   m_ObjectHideFlags: 0
@@ -801,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b59441c86662b24b96dce1467c8d936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: {fileID: 0}
 --- !u!1 &1829473817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: a1489e9ef61a0e54d9952c5dc91d1777,
@@ -918,6 +924,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817208860699826042, guid: 5f08a75506d8d7245b32b21a30ce6e0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4817208860699826044, guid: 5f08a75506d8d7245b32b21a30ce6e0a,
         type: 3}

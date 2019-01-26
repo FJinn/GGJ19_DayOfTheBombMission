@@ -60,14 +60,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 tempVector = new Vector3(-10,-10,-10);
         for(int i=0; i<10; i++)
         {
-            int xMin = -5 + i;
-            int xMax = -5 + i + 1;
-            int zMin = -6 + i;
-            int zMax = -6 + i + 1;
-
-            if(transform.position.x >= xMin && transform.position.x <= xMax && transform.position.z >= zMin && transform.position.z <= zMax)
+            for(int j=0;j<10; j++)
             {
-                tempVector = new Vector3(xMin + 1 , 1.217f, zMin + 1);
+                int xMin = -4 + j;
+                int xMax = -4 + j + 1;
+                int zMin = -5 + i;
+                int zMax = -5 + i + 1;
+
+                if (transform.position.x >= xMin && transform.position.x <= xMax && transform.position.z >= zMin && transform.position.z <= zMax)
+                {
+                    tempVector = new Vector3(xMin, 1.217f, zMin);
+                }
             }
         }
 

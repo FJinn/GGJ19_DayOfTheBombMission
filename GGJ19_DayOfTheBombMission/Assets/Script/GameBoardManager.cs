@@ -106,7 +106,7 @@ public class GameBoardManager : MonoBehaviour
         if(GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
         {
             target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
+            target.transform.position = new Vector3(target.transform.position.x,1, target.transform.position.z - 1);
         }
 
         if(GameStateManager.Instance.currentPlayer.transform.position.z != 5)
@@ -114,19 +114,19 @@ public class GameBoardManager : MonoBehaviour
             if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x + 1, target.transform.position.y, target.transform.position.z);
+                target.transform.position = new Vector3(target.transform.position.x + 1,1, target.transform.position.z);
             }
 
             if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
             {
                 target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x - 1, target.transform.position.y, target.transform.position.z);
+                target.transform.position = new Vector3(target.transform.position.x - 1,1, target.transform.position.z);
             }
 
             if (GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
             {
                 target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+                target.transform.position = new Vector3(target.transform.position.x,1, target.transform.position.z + 1);
             }
         }
     }

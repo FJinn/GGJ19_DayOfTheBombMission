@@ -336,6 +336,7 @@ public class Tile : MonoBehaviour
         {
             if (myEffect == SpecialEffect.BOMB)
             {
+                ps.playerLife--;
                 DestroyTile();
             }
             else if(myEffect == SpecialEffect.LIFE)
