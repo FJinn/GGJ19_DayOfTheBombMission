@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public List<Tile> tileList = new List<Tile>();
+    public GameObject emptyTile;
+    private GameObject emptyTileHolder;
 
-    private Tile selectedTile;
+    public Tile selectedTile;
 
     int num = 0;
 
@@ -17,11 +19,18 @@ public class PlayerInventory : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        ChooseTile();
+    {   
+        if(this.gameObject == GameStateManager.Instance.currentPlayer)
+        {
+            if (GameStateManager.Instance.currentGameState == gameState.TILE_DISTRIBUTION)
+            {
+                DistributeTiles();
+                GameStateManager.Instance.currentGameState = gameState.TILE_CHOOSING;
+            }
+
+            if (GameStateManager.Instance.currentGameState == gameState.TILE_CHOOSING) ChooseTile();
+        }      
     }
-
-
 
     void ChooseTile()
     {
@@ -47,6 +56,32 @@ public class PlayerInventory : MonoBehaviour
             {
                 selectedTile = tileList[num - 1];
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            GameStateManager.Instance.currentGameState = gameState.TILE_PLACEMENT;
+        }
+    }
+
+    void DistributeTiles()
+    {   
+        if(tileList.Count<=0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                emptyTileHolder = Instantiate(emptyTile, transform.position, Quaternion.identity);
+                int j = Random.Range(1, 11);
+                emptyTileHolder.GetComponent<Tile>().InitializePattern(j);
+                tileList.Add(emptyTileHolder.GetComponent<Tile>());
+            }
+        }
+        else
+        {
+            emptyTileHolder = Instantiate(emptyTile, transform.position, Quaternion.identity);
+            int j = Random.Range(1, 11);
+            emptyTileHolder.GetComponent<Tile>().InitializePattern(j);
+            tileList.Add(emptyTileHolder.GetComponent<Tile>());
         }
     }
 }

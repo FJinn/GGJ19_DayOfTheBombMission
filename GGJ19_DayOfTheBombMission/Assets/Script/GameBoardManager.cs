@@ -6,7 +6,7 @@ public class GameBoardManager : MonoBehaviour
 {
     // 10 x10 game board consists of 100 tiles
     public int boardSize;
-    public int xPos, yPos;
+    private int xPos, yPos;
     public int[,]array;
     public GameObject tileGO;
     public GameObject target;
@@ -35,12 +35,17 @@ public class GameBoardManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        SelectPosition();
-        if (Input.GetKeyDown(KeyCode.Space))
+    {   
+        if(GameStateManager.Instance.currentGameState == gameState.TILE_PLACEMENT)
         {
-            PlaceTile();
-        }
+            SelectPosition();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PlaceTile();
+                GameStateManager.Instance.currentGameState = gameState.PLAYER_TURN;
+                GameStateManager.Instance.currentPlayerID++;
+            }
+        } 
     }
 
     void SelectPosition()
@@ -81,7 +86,7 @@ public class GameBoardManager : MonoBehaviour
         truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
         truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
 
-        Instantiate(tileGO, truePos, Quaternion.identity);
+        Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
     }
 
 }

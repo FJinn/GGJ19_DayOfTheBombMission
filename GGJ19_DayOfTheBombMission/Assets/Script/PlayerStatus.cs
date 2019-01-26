@@ -14,6 +14,14 @@ public class PlayerStatus : MonoBehaviour
     {
         CapLifeMax();
         Die();
+        if(GameStateManager.Instance.currentGameState == gameState.PLAYER_TURN)
+        {
+            if (GameStateManager.Instance.currentPlayerID == playerID)
+            {
+                GameStateManager.Instance.currentPlayer = this.gameObject;
+                GameStateManager.Instance.currentGameState = gameState.TILE_DISTRIBUTION;
+            }
+        }
     }
 
     void CapLifeMax()
