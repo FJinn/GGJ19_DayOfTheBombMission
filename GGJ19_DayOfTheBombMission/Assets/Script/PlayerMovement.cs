@@ -25,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove()
     {
         Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
+
+        if(boardPos.x >=10 || boardPos.x < 0 || boardPos.z >=10 || boardPos.z < 0)
+        {
+            Destroy(gameObject);
+        }
+
         currentTile = GameBoardManager.Instance.gameBoard[(int)boardPos.x, (int)boardPos.z];
 
         if (currentTile.blankTile != 0)
@@ -45,7 +51,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(transform.position != target)
         {
-            if(transform.position.x > target.x)
+            if (transform.position.x <= target.x + 0.3f || transform.position.x >= target.x - 0.3f)
+            {
+                transform.position = new Vector3(target.x, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x > target.x)
             {
                 transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
             }
@@ -53,22 +63,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.z);
             }
-            else if (Mathf.Round(transform.position.x) == Mathf.Round(target.x))
-            {
-                transform.position = new Vector3(target.x, transform.position.y, transform.position.z);
-            }
 
-            if (transform.position.z > target.z)
+
+            if (transform.position.z <= target.z + 0.3f && transform.position.z >= target.z - 0.3f)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, target.z);
+            }
+            else if (transform.position.z > target.z)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
             }
             else if (transform.position.z < target.z)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.1f);
-            }
-            else if(Mathf.Round(transform.position.z) == Mathf.Round(target.z))
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, target.z);
             }
         }
         else
