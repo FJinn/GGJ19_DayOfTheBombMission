@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum gameState
+public enum GameState
 {
     PLAYER_TURN,
     TILE_DISTRIBUTION,
@@ -19,7 +19,7 @@ public class GameStateManager : MonoBehaviour
 
     public int currentPlayerID = 0;
     public GameObject currentPlayer;
-    public gameState currentGameState;
+    public GameState currentGameState;
 
     public float delayTimer = 0f;
     public float delayDuration = 2f;
@@ -42,7 +42,7 @@ public class GameStateManager : MonoBehaviour
         else
         {
             delayTimer = 0;
-            currentGameState = gameState.PLAYER_TURN;
+            currentGameState = GameState.PLAYER_TURN;
         }
     }
 
@@ -50,7 +50,7 @@ public class GameStateManager : MonoBehaviour
     {
         if(currentPlayerID == 4)
         {
-            currentGameState = gameState.PLAYER_MOVE;
+            currentGameState = GameState.PLAYER_MOVE;
             currentPlayerID = 0;
         }
     }

@@ -107,6 +107,10 @@ public class Tile : MonoBehaviour
             // right
             currentSide = 3;
         }
+        else
+        {
+            currentSide = -1;
+        }
     }
 
     // for player keep moving

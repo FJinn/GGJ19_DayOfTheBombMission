@@ -14,7 +14,7 @@ public class PlayerStatus : MonoBehaviour
     {
         CapLifeMax();
         Die();
-        if(GameStateManager.Instance.currentGameState == gameState.PLAYER_TURN)
+        if(GameStateManager.Instance.currentGameState == GameState.PLAYER_TURN)
         {
             if (GameStateManager.Instance.currentPlayerID == playerID)
             {
@@ -26,7 +26,7 @@ public class PlayerStatus : MonoBehaviour
                 else
                 {
                     GameStateManager.Instance.delayTimer = 0;
-                    GameStateManager.Instance.currentGameState = gameState.TILE_DISTRIBUTION;
+                    GameStateManager.Instance.currentGameState = GameState.TILE_DISTRIBUTION;
                 }              
             }
         }
@@ -45,6 +45,15 @@ public class PlayerStatus : MonoBehaviour
         if(playerLife <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            playerLife--;
+            other.gameObject.GetComponent<PlayerStatus>().playerLife--;
         }
     }
 }

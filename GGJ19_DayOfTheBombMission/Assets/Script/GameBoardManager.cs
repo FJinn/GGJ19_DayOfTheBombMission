@@ -37,7 +37,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Update()
     {   
-        if(GameStateManager.Instance.currentGameState == gameState.TILE_PLACEMENT)
+        if(GameStateManager.Instance.currentGameState == GameState.TILE_PLACEMENT)
         {
             player = GameStateManager.Instance.currentPlayer;
             SelectPosition();
@@ -57,7 +57,7 @@ public class GameBoardManager : MonoBehaviour
             else
             {
                 GameStateManager.Instance.delayTimer = 0;
-                GameStateManager.Instance.currentGameState = gameState.PLAYER_TURN;
+                GameStateManager.Instance.currentGameState = GameState.PLAYER_TURN;
                 GameStateManager.Instance.currentPlayerID++;
                 isPlaced = false;
             }

@@ -24,7 +24,7 @@ public class PlayerInventory : MonoBehaviour
     {   
         if(this.gameObject == GameStateManager.Instance.currentPlayer)
         {
-            if (GameStateManager.Instance.currentGameState == gameState.TILE_DISTRIBUTION)
+            if (GameStateManager.Instance.currentGameState == GameState.TILE_DISTRIBUTION)
             {   
                 if(!isDistributed)
                 {
@@ -39,12 +39,12 @@ public class PlayerInventory : MonoBehaviour
                 else
                 {
                     GameStateManager.Instance.delayTimer = 0;
-                    GameStateManager.Instance.currentGameState = gameState.TILE_CHOOSING;
+                    GameStateManager.Instance.currentGameState = GameState.TILE_CHOOSING;
                     isDistributed = false;
                 }
             }
 
-            if (GameStateManager.Instance.currentGameState == gameState.TILE_CHOOSING) ChooseTile();
+            if (GameStateManager.Instance.currentGameState == GameState.TILE_CHOOSING) ChooseTile();
         }      
     }
 
@@ -78,7 +78,7 @@ public class PlayerInventory : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            GameStateManager.Instance.currentGameState = gameState.TILE_PLACEMENT;
+            GameStateManager.Instance.currentGameState = GameState.TILE_PLACEMENT;
         }
     }
 
