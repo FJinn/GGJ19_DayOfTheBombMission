@@ -54,16 +54,7 @@ public class GameStateManager : MonoBehaviour
         {   
             Randomize:
                 int num = Random.Range(-4, 5);
-                int num2 = Random.Range(0, 2);
-                if(num2 == 0)
-                {
-                    playerList[i].transform.position = new Vector3(num + 0.25f, playerList[i].transform.position.y, playerList[i].transform.position.z);
-                }
-                else
-                {
-                    playerList[i].transform.position = new Vector3(num - 0.25f, playerList[i].transform.position.y, playerList[i].transform.position.z);
-                }
-
+                
                 for(int j=0;j<playerList.Length;j++)
                 {
                     if(i!=j)
@@ -73,6 +64,16 @@ public class GameStateManager : MonoBehaviour
                             goto Randomize;
                         }
                     }
+                }
+
+                int num2 = Random.Range(0, 2);
+                if (num2 == 0)
+                {
+                    playerList[i].transform.position = new Vector3(num + 0.25f, playerList[i].transform.position.y, playerList[i].transform.position.z);
+                }
+                else
+                {
+                    playerList[i].transform.position = new Vector3(num - 0.25f, playerList[i].transform.position.y, playerList[i].transform.position.z);
                 }
         }
     }
