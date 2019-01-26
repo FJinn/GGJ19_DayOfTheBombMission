@@ -62,7 +62,7 @@ public class Tile : MonoBehaviour
   //  int currentDegree = 0;
 
 
-    private void Awake()
+    public void InitializeTile()
     {
         InitializeLandPosition();
         InitializeConnectedTile();
@@ -70,14 +70,25 @@ public class Tile : MonoBehaviour
 
     void InitializeLandPosition()
     {
-        landPositions[(int)Direction.TOP_LEFT] = new Vector3(transform.position.x - transform.localScale.x / 4, transform.position.y, transform.position.z + transform.localScale.z / 2);
-        landPositions[(int)Direction.TOP_RIGHT] = new Vector3(transform.position.x + transform.localScale.x / 4, transform.position.y, transform.position.z + transform.localScale.z / 2);
-        landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3(transform.position.x - transform.localScale.x / 4, transform.position.y, transform.position.z - transform.localScale.z / 2);
-        landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3(transform.position.x + transform.localScale.x / 4, transform.position.y, transform.position.z - transform.localScale.z / 2);
-        landPositions[(int)Direction.LEFT_TOP] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z + transform.localScale.z / 4);
-        landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z - transform.localScale.z / 4);
-        landPositions[(int)Direction.RIGHT_TOP] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z + transform.localScale.z / 4);
-        landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z - transform.localScale.z / 4);
+        landPositions[(int)Direction.TOP_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.5f);
+        landPositions[(int)Direction.TOP_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.5f);
+        landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.5f);
+        landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.5f);
+        landPositions[(int)Direction.LEFT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.25f);
+        landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.25f);
+        landPositions[(int)Direction.RIGHT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.25f);
+        landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.25f);
+
+        Debug.Log(transform.position);
+
+        Debug.Log(gameObject.name + " : " + Direction.TOP_LEFT + " : " + landPositions[(int)Direction.TOP_LEFT]);
+        Debug.Log(gameObject.name + " : " + Direction.TOP_RIGHT + " : " + landPositions[(int)Direction.TOP_RIGHT]);
+        Debug.Log(gameObject.name + " : " + Direction.BOTTOM_LEFT + " : " + landPositions[(int)Direction.BOTTOM_LEFT]);
+        Debug.Log(gameObject.name + " : " + Direction.BOTTOM_RIGHT + " : " + landPositions[(int)Direction.BOTTOM_RIGHT]);
+        Debug.Log(gameObject.name + " : " + Direction.LEFT_TOP + " : " + landPositions[(int)Direction.LEFT_TOP]);
+        Debug.Log(gameObject.name + " : " + Direction.LEFT_BOTTOM + " : " + landPositions[(int)Direction.LEFT_BOTTOM]);
+        Debug.Log(gameObject.name + " : " + Direction.RIGHT_TOP + " : " + landPositions[(int)Direction.RIGHT_TOP]);
+        Debug.Log(gameObject.name + " : " + Direction.RIGHT_BOTTOM + " : " + landPositions[(int)Direction.RIGHT_BOTTOM]);
     }
 
     void InitializeConnectedTile()
