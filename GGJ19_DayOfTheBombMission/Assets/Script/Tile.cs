@@ -53,7 +53,7 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// index stands for the current position in terms of direction
     /// </summary>
-    public Vector3[] nextLandPositions = new Vector3[8];
+    [SerializeField]public Vector3[] nextLandPositions = new Vector3[8];
     /// <summary>
     /// 0 = top, 1 = left, 2 = down, 3 = right
     /// </summary>
@@ -70,25 +70,25 @@ public class Tile : MonoBehaviour
 
     void InitializeLandPosition()
     {
-        landPositions[(int)Direction.TOP_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.5f);
-        landPositions[(int)Direction.TOP_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.5f);
-        landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.5f);
-        landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.5f);
-        landPositions[(int)Direction.LEFT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.25f);
-        landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.25f);
-        landPositions[(int)Direction.RIGHT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.25f);
-        landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.25f);
+        landPositions[(int)Direction.TOP_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.5f);
+        landPositions[(int)Direction.TOP_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.5f);
+        landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.5f);
+        landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.5f);
+        landPositions[(int)Direction.LEFT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.25f);
+        landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.25f);
+        landPositions[(int)Direction.RIGHT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) - 0.25f);
+        landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 0.25f);
 
-        Debug.Log(transform.position);
+    //    Debug.Log(transform.position);
 
-        Debug.Log(gameObject.name + " : " + Direction.TOP_LEFT + " : " + landPositions[(int)Direction.TOP_LEFT]);
-        Debug.Log(gameObject.name + " : " + Direction.TOP_RIGHT + " : " + landPositions[(int)Direction.TOP_RIGHT]);
-        Debug.Log(gameObject.name + " : " + Direction.BOTTOM_LEFT + " : " + landPositions[(int)Direction.BOTTOM_LEFT]);
-        Debug.Log(gameObject.name + " : " + Direction.BOTTOM_RIGHT + " : " + landPositions[(int)Direction.BOTTOM_RIGHT]);
-        Debug.Log(gameObject.name + " : " + Direction.LEFT_TOP + " : " + landPositions[(int)Direction.LEFT_TOP]);
-        Debug.Log(gameObject.name + " : " + Direction.LEFT_BOTTOM + " : " + landPositions[(int)Direction.LEFT_BOTTOM]);
-        Debug.Log(gameObject.name + " : " + Direction.RIGHT_TOP + " : " + landPositions[(int)Direction.RIGHT_TOP]);
-        Debug.Log(gameObject.name + " : " + Direction.RIGHT_BOTTOM + " : " + landPositions[(int)Direction.RIGHT_BOTTOM]);
+    //    Debug.Log(gameObject.name + " : " + Direction.TOP_LEFT + " : " + landPositions[(int)Direction.TOP_LEFT]);
+    //    Debug.Log(gameObject.name + " : " + Direction.TOP_RIGHT + " : " + landPositions[(int)Direction.TOP_RIGHT]);
+    //    Debug.Log(gameObject.name + " : " + Direction.BOTTOM_LEFT + " : " + landPositions[(int)Direction.BOTTOM_LEFT]);
+    //    Debug.Log(gameObject.name + " : " + Direction.BOTTOM_RIGHT + " : " + landPositions[(int)Direction.BOTTOM_RIGHT]);
+    //    Debug.Log(gameObject.name + " : " + Direction.LEFT_TOP + " : " + landPositions[(int)Direction.LEFT_TOP]);
+    //    Debug.Log(gameObject.name + " : " + Direction.LEFT_BOTTOM + " : " + landPositions[(int)Direction.LEFT_BOTTOM]);
+    //    Debug.Log(gameObject.name + " : " + Direction.RIGHT_TOP + " : " + landPositions[(int)Direction.RIGHT_TOP]);
+    //    Debug.Log(gameObject.name + " : " + Direction.RIGHT_BOTTOM + " : " + landPositions[(int)Direction.RIGHT_BOTTOM]);
     }
 
     void InitializeConnectedTile()
@@ -101,26 +101,26 @@ public class Tile : MonoBehaviour
 
     void CalculateCurrentSide(Vector3 playerPosition)
     {
-        if((playerPosition.x > transform.position.x && playerPosition.y > transform.position.y) ||
-           (playerPosition.x < transform.position.x && playerPosition.y > transform.position.y) )
+        if((playerPosition.x > transform.position.x && playerPosition.z < transform.position.z) ||
+           (playerPosition.x < transform.position.x && playerPosition.z < transform.position.z) )
         {
             // top
             currentSide = 0;
         }
-        else if((playerPosition.x < transform.position.x && playerPosition.y < transform.position.y) ||
-                (playerPosition.x < transform.position.x && playerPosition.y > transform.position.y) )
+        else if((playerPosition.x > transform.position.x && playerPosition.z < transform.position.z) ||
+                (playerPosition.x > transform.position.x && playerPosition.z > transform.position.z) )
         {
             // left
             currentSide = 1;
         }
-        else if((playerPosition.x < transform.position.x && playerPosition.y < transform.position.y) ||
-                (playerPosition.x > transform.position.x && playerPosition.y < transform.position.y) )
+        else if((playerPosition.x < transform.position.x && playerPosition.z > transform.position.z) ||
+                (playerPosition.x > transform.position.x && playerPosition.z > transform.position.z) )
         {
             // bottom
             currentSide = 2;
         }
-        else if ((playerPosition.x > transform.position.x && playerPosition.y < transform.position.y) ||
-                 (playerPosition.x > transform.position.x && playerPosition.y > transform.position.y) )
+        else if ((playerPosition.x < transform.position.x && playerPosition.z < transform.position.z) ||
+                 (playerPosition.x < transform.position.x && playerPosition.z > transform.position.z) )
         {
             // right
             currentSide = 3;
@@ -183,13 +183,48 @@ public class Tile : MonoBehaviour
     /// <returns></returns>
     public Direction GetCurrentDirection(Vector3 currentLocation)
     {
+        CalculateCurrentSide(currentLocation);
         currentPosition = currentLocation;
-        for(int i=0; i<landPositions.Length; i++)
+
+        if (currentLocation.x > transform.position.x && currentLocation.z < transform.position.z && currentSide == 0)
         {
-            if (currentPosition == landPositions[i])
-            {
-                currentDirection = (Direction)i;
-            }
+            // top left
+            currentDirection = Direction.TOP_LEFT;
+        }
+        else if (currentLocation.x < transform.position.x && currentLocation.z < transform.position.z && currentSide == 0)
+        {
+            // top right
+            currentDirection = Direction.TOP_RIGHT;
+        }
+        else if (currentLocation.x > transform.position.x && currentLocation.z < transform.position.z && currentSide == 1)
+        {
+            // left top
+            currentDirection = Direction.LEFT_TOP;
+        }
+        else if(currentLocation.x > transform.position.x && currentLocation.z > transform.position.z && currentSide == 1)
+        {
+            // left bottom
+            currentDirection = Direction.LEFT_BOTTOM;
+        }
+        else if (currentLocation.x < transform.position.x && currentLocation.z > transform.position.z && currentSide == 2)
+        {
+            // bottom right
+            currentDirection = Direction.BOTTOM_RIGHT;
+        }
+        else if(currentLocation.x > transform.position.x && currentLocation.z > transform.position.z && currentSide == 2)
+        {
+            // bottom left
+            currentDirection = Direction.BOTTOM_LEFT;
+        }
+        else if (currentLocation.x < transform.position.x && currentLocation.z < transform.position.z && currentSide == 3)
+        {
+            // right top
+            currentDirection = Direction.RIGHT_TOP;
+        }
+        else if(currentLocation.x < transform.position.x && currentLocation.z > transform.position.z && currentSide == 3)
+        {
+            // right bottom
+            currentDirection = Direction.RIGHT_BOTTOM;
         }
 
         return currentDirection;
