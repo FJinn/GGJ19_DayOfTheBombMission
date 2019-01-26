@@ -19,7 +19,15 @@ public class PlayerStatus : MonoBehaviour
             if (GameStateManager.Instance.currentPlayerID == playerID)
             {
                 GameStateManager.Instance.currentPlayer = this.gameObject;
-                GameStateManager.Instance.currentGameState = gameState.TILE_DISTRIBUTION;
+                if(GameStateManager.Instance.delayTimer < GameStateManager.Instance.delayDuration)
+                {
+                    GameStateManager.Instance.delayTimer += Time.deltaTime;
+                }
+                else
+                {
+                    GameStateManager.Instance.delayTimer = 0;
+                    GameStateManager.Instance.currentGameState = gameState.TILE_DISTRIBUTION;
+                }              
             }
         }
     }
