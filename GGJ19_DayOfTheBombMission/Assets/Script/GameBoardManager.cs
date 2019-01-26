@@ -8,10 +8,11 @@ public class GameBoardManager : MonoBehaviour
     public int boardSize;
     public int xPos, yPos;
     public int[,]array;
-    public GameObject target;
     public GameObject tileGO;
+    public GameObject target;
     Vector3 truePos;
     public float gridSize;
+    public GameObject player;
 
     static GameBoardManager instance;
     public static GameBoardManager Instance { get { return instance; } }
@@ -35,15 +36,47 @@ public class GameBoardManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        SelectPosition();
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             PlaceTile();
-            Debug.Log("Place");
+        }
+    }
+
+    void SelectPosition()
+    {
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            target.transform.position = player.transform.position;
+            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            target.transform.position = player.transform.position;
+            target.transform.position = new Vector3(target.transform.position.x+1, target.transform.position.y, target.transform.position.z - 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            target.transform.position = player.transform.position;
+            target.transform.position = new Vector3(target.transform.position.x-1, target.transform.position.y, target.transform.position.z - 1);
         }
     }
 
     void PlaceTile()
-    {   
+    {
+        //if(Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    targetPos = player.transform.position;
+        //    targetPos.z -= 40;
+        //}
+
+        //else if(Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    targetPos = player.transform.position;
+        //    targetPos.
+        //}
         truePos.x = Mathf.Floor(target.transform.position.x / gridSize) * gridSize;
         truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
         truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
