@@ -29,9 +29,10 @@ public class PlayerMovement : MonoBehaviour
             myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
 
             Vector3 target = currentTile.nextLandPositions[(int)myDirection];
+            Debug.Log("OldTarget: " + target);
             target = new Vector3(Mathf.RoundToInt(target.x), 1.217f, Mathf.RoundToInt(target.z) - 0.5f);
+            Debug.Log("NewTarget: " + target);
             transform.position = Vector3.MoveTowards(transform.position, target, 0.5f);
-            //transform.position = target;
 
             
         }
