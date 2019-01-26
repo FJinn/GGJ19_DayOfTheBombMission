@@ -21,16 +21,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove()
     {
-        Vector3 boardPos = CalculateGameBoardPosition();
+        Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
         currentTile = GameBoardManager.Instance.gameBoard[(int)boardPos.x, (int)boardPos.z];
 
         if(currentTile.blankTile != 0)
         {
             myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, currentTile.nextLandPositions[(int)myDirection], 1);
 
-            Timer();
+            Vector3 target = currentTile.nextLandPositions[(int)myDirection];
+            target = new Vector3(Mathf.RoundToInt(target.x), 1.217f, Mathf.RoundToInt(target.z) - 0.5f);
+            transform.position = Vector3.MoveTowards(transform.position, target, 0.5f);
+            //transform.position = target;
+
+            
         }
+        Timer();
     }
 
     void Timer()
@@ -55,25 +60,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    Vector3 CalculateGameBoardPosition()
-    {
-        Vector3 tempVector = new Vector3(-10,-10,-10);
-        for(int i=0; i<10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                int xMin = -4 + j;
-                int xMax = -4 + j + 1;
-                int zMin = -5 + i;
-                int zMax = -5 + i + 1;
-
-                if (transform.position.x >= xMin && transform.position.x <= xMax && transform.position.z >= zMin && transform.position.z <= zMax)
-                {
-                    tempVector = new Vector3(xMin, 1.217f, zMin);
-                }
-            }
-        }
-
-        return tempVector;
-    }
 }
