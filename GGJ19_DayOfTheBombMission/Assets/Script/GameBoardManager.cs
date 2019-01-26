@@ -9,7 +9,7 @@ public class GameBoardManager : MonoBehaviour
     public int xPos, yPos;
     public int[,]array;
     public GameObject target;
-    public GameObject tile;
+    public GameObject tileGO;
     Vector3 truePos;
     public float gridSize;
 
@@ -48,7 +48,7 @@ public class GameBoardManager : MonoBehaviour
         truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
         truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
 
-        Instantiate(tile, truePos, Quaternion.identity);
+        Instantiate(tileGO, truePos, Quaternion.identity);
     }
 
 }
