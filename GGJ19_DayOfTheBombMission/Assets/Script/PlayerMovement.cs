@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         myDirection = tile.GetCurrentDirection(this.gameObject.transform.position);
         this.transform.position = tile.nextLandPositions[(int)myDirection];
+
     }
 
     
