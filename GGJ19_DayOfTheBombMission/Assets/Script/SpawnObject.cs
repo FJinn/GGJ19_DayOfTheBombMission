@@ -51,11 +51,17 @@ public class SpawnObject : MonoBehaviour {
     {
         if (playerObject.transform.position.z >= -5)
         {
-            if (cubeThing.transform.position.y != boardPos.transform.position.y)
+
+            do
+            {
+                cubeThing.transform.position = Vector3.MoveTowards(cubeThing.transform.position, playerObject.transform.position, riseSpeed * Time.deltaTime);
+            } while (cubeThing.transform.position.y != boardPos.transform.position.y);
+
+            /*if (cubeThing.transform.position.y != boardPos.transform.position.y)
             {
                 cubeThing.transform.position = Vector3.MoveTowards(cubeThing.transform.position, playerObject.transform.position, riseSpeed * Time.deltaTime);
                 
-            }
+            }*/
         }
         else if (playerObject.transform.position.z >= -3)
         {
