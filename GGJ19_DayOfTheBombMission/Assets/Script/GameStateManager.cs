@@ -21,6 +21,9 @@ public class GameStateManager : MonoBehaviour
     public GameObject currentPlayer;
     public gameState currentGameState;
 
+    public float delayTimer = 0f;
+    public float delayDuration = 2f;
+
     void Awake()
     {
         if(instance == null)
@@ -31,11 +34,21 @@ public class GameStateManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (delayTimer < delayDuration)
+        {
+            delayTimer += Time.deltaTime;
+        }
+        else
+        {
+            delayTimer = 0;
+            currentGameState = gameState.PLAYER_TURN;
+        }
     }
 
     private void Update()
     {
-        if(currentPlayerID == 3)
+        if(currentPlayerID == 4)
         {
             currentGameState = gameState.PLAYER_MOVE;
             currentPlayerID = 0;

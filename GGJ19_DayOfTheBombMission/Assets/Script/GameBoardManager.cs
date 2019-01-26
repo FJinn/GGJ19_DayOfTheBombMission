@@ -13,6 +13,7 @@ public class GameBoardManager : MonoBehaviour
     Vector3 truePos;
     public float gridSize;
     public GameObject player;
+    private bool isPlaced = false;
 
     static GameBoardManager instance;
     public static GameBoardManager Instance { get { return instance; } }
@@ -38,14 +39,29 @@ public class GameBoardManager : MonoBehaviour
     {   
         if(GameStateManager.Instance.currentGameState == gameState.TILE_PLACEMENT)
         {
+            player = GameStateManager.Instance.currentPlayer;
             SelectPosition();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && isPlaced == false)
             {
                 PlaceTile();
-                GameStateManager.Instance.currentGameState = gameState.PLAYER_TURN;
-                GameStateManager.Instance.currentPlayerID++;
+                isPlaced = true;
             }
         } 
+
+        if(isPlaced == true)
+        {
+            if (GameStateManager.Instance.delayTimer < GameStateManager.Instance.delayDuration)
+            {
+                GameStateManager.Instance.delayTimer += Time.deltaTime;
+            }
+            else
+            {
+                GameStateManager.Instance.delayTimer = 0;
+                GameStateManager.Instance.currentGameState = gameState.PLAYER_TURN;
+                GameStateManager.Instance.currentPlayerID++;
+                isPlaced = false;
+            }
+        }
     }
 
     void SelectPosition()

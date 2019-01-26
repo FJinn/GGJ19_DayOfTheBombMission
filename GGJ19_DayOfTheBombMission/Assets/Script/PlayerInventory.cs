@@ -12,9 +12,11 @@ public class PlayerInventory : MonoBehaviour
 
     int num = 0;
 
+    bool isDistributed = false;
+
     private void Start()
-    {
-        selectedTile = tileList[num];
+    {   
+        //selectedTile = tileList[num];
     }
 
     // Update is called once per frame
@@ -23,9 +25,23 @@ public class PlayerInventory : MonoBehaviour
         if(this.gameObject == GameStateManager.Instance.currentPlayer)
         {
             if (GameStateManager.Instance.currentGameState == gameState.TILE_DISTRIBUTION)
-            {
-                DistributeTiles();
-                GameStateManager.Instance.currentGameState = gameState.TILE_CHOOSING;
+            {   
+                if(!isDistributed)
+                {
+                    DistributeTiles();
+                    isDistributed = true;
+                }
+                selectedTile = tileList[num];
+                if (GameStateManager.Instance.delayTimer < GameStateManager.Instance.delayDuration)
+                {
+                    GameStateManager.Instance.delayTimer += Time.deltaTime;
+                }
+                else
+                {
+                    GameStateManager.Instance.delayTimer = 0;
+                    GameStateManager.Instance.currentGameState = gameState.TILE_CHOOSING;
+                    isDistributed = false;
+                }
             }
 
             if (GameStateManager.Instance.currentGameState == gameState.TILE_CHOOSING) ChooseTile();
@@ -38,11 +54,11 @@ public class PlayerInventory : MonoBehaviour
         {
             if (num == 2)
             {
-                selectedTile = tileList[0];
+                num = 0;   
             }
             else
             {
-                selectedTile = tileList[num + 1];
+                num++;
             }
         }
 
@@ -50,13 +66,15 @@ public class PlayerInventory : MonoBehaviour
         {
             if (num == 0)
             {
-                selectedTile = tileList[2];
+                num = 2;
             }
             else
             {
-                selectedTile = tileList[num - 1];
+                num--;
             }
         }
+
+        selectedTile = tileList[num];
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
@@ -70,7 +88,7 @@ public class PlayerInventory : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                emptyTileHolder = Instantiate(emptyTile, transform.position, Quaternion.identity);
+                emptyTileHolder = Instantiate(emptyTile, new Vector3(0,-20,0), Quaternion.identity);
                 int j = Random.Range(1, 11);
                 emptyTileHolder.GetComponent<Tile>().InitializePattern(j);
                 tileList.Add(emptyTileHolder.GetComponent<Tile>());
