@@ -78,6 +78,7 @@ public class PlayerInventory : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
+            tileList.RemoveAt(num);
             GameStateManager.Instance.currentGameState = gameState.TILE_PLACEMENT;
         }
     }
