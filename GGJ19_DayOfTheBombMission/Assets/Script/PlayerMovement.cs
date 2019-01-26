@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 target;
 
     bool move = false;
+    bool runTime = false;
 
     // Update is called once per frame
     void Update()
@@ -44,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
             //transform.position = target;
             move = true;
         }
-        if(move)
-        Moving();
+
+        if (move)
+            Moving();
+        else if(runTime)
+            Timer();
     }
 
     void Moving()
@@ -78,8 +82,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Timer();
             move = false;
+            runTime = true;
         }
     }
 
@@ -88,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         if(counter >= timer)
         {
             counter = 0;
-
+            runTime = false;
             currentTile.playerCrossed++;
             if (currentTile.ContinueToNextTile(transform.position))
             {
