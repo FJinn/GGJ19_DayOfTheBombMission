@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public enum SpecialEffect
+    {
+        BOMB,
+        LIFE,
+        STUN,
+        NONE
+    }
+
     public enum Direction
     {
         TOP_LEFT,
@@ -15,6 +23,13 @@ public class Tile : MonoBehaviour
         RIGHT_TOP,
         RIGHT_BOTTOM
     }
+
+    /// <summary>
+    /// 0 = no one cross, 1 = owner first crossed, 2 = activate special effect
+    /// </summary>
+    public int playerCrossed = 0;
+
+    public bool isStunned = false;
 
     public int patternID;
 
