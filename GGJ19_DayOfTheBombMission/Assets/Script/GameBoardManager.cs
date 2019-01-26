@@ -14,6 +14,7 @@ public class GameBoardManager : MonoBehaviour
     public float gridSize;
     public GameObject player;
     private bool isPlaced = false;
+    private bool isInitializedPos = false;
 
     static GameBoardManager instance;
     public static GameBoardManager Instance { get { return instance; } }
@@ -40,21 +41,27 @@ public class GameBoardManager : MonoBehaviour
         if(GameStateManager.Instance.currentGameState == GameState.TILE_PLACEMENT)
         {
             player = GameStateManager.Instance.currentPlayer;
-            if(GameStateManager.Instance.currentPlayer.transform.position.z > -5)
+            if(isInitializedPos == false)
             {
-                target.transform.position = player.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
+                if (GameStateManager.Instance.currentPlayer.transform.position.z > -5)
+                {
+                    target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
+                    target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
+                }
+                else
+                {
+                    target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
+                    target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+                }
+                isInitializedPos = true;
             }
-            else
-            {
-                target.transform.position = player.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
-            }
+            
             
             SelectPosition();
             if (Input.GetKeyDown(KeyCode.Return) && isPlaced == false)
             {
                 PlaceTile();
+                isInitializedPos = false;
                 isPlaced = true;
             }
         } 
@@ -79,26 +86,29 @@ public class GameBoardManager : MonoBehaviour
     {
         if(GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            target.transform.position = player.transform.position;
+            target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
             target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
         }
 
-        if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
+        if(GameStateManager.Instance.currentPlayer.transform.position.z != 5)
         {
-            target.transform.position = player.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x+1, target.transform.position.y, target.transform.position.z);
-        }
+            if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
+                target.transform.position = new Vector3(target.transform.position.x + 1, target.transform.position.y, target.transform.position.z);
+            }
 
-        if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            target.transform.position = player.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x-1, target.transform.position.y, target.transform.position.z);
-        }
+            if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
+                target.transform.position = new Vector3(target.transform.position.x - 1, target.transform.position.y, target.transform.position.z);
+            }
 
-        if(GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            target.transform.position = player.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+            if (GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
+                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+            }
         }
     }
 
@@ -116,7 +126,7 @@ public class GameBoardManager : MonoBehaviour
         //    targetPos.
         //}
         truePos.x = Mathf.Floor(target.transform.position.x / gridSize) * gridSize;
-        truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
+        truePos.y = target.transform.position.y;
         truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
 
         Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
