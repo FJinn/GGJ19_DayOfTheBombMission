@@ -24,6 +24,13 @@ public class Tile : MonoBehaviour
         NONE
     }
 
+    /// <summary>
+    /// 0 = blank tile, 1 = real tile
+    /// </summary>
+    public int blankTile = 0;
+    
+    public int x, z;
+
     SpecialEffect myEffect;
     /// <summary>
     /// 0 = no one cross, 1 = owner first crossed, 2 = activate special effect
@@ -296,6 +303,7 @@ public class Tile : MonoBehaviour
         }
 
         InitializeSpecialEffect();
+        blankTile = 1;
     }
 
     // initialize special effect

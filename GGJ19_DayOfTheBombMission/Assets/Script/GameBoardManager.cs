@@ -6,8 +6,13 @@ public class GameBoardManager : MonoBehaviour
 {
     // 10 x10 game board consists of 100 tiles
     public int boardSize;
-    private int xPos, yPos;
-    public int[,]array;
+    /// <summary>
+    /// [j,i]
+    /// i = row, j = column
+    /// x = column, z = row
+    /// ===>>>>[x, z]
+    /// </summary>
+    public Tile[,] gameBoard;
     public GameObject tileGO;
     public GameObject target;
     Vector3 truePos;
@@ -32,7 +37,21 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        array = new int[boardSize, boardSize];
+        gameBoard = new Tile[boardSize, boardSize];
+
+        // i = row, j = column
+        for(int i=0; i<boardSize; i++)
+        {
+            for(int j=0; j<boardSize; j++)
+            {
+                Tile tempTile = new Tile();
+                tempTile.blankTile = 0;
+                gameBoard[i,j] = tempTile;
+                // x = column, z = row
+                gameBoard[i, j].x = 5 - j;
+                gameBoard[i, j].z = -5 + i;
+            }
+        }
     }
 
     private void Update()
@@ -119,7 +138,10 @@ public class GameBoardManager : MonoBehaviour
         truePos.y = Mathf.Floor(target.transform.position.y / gridSize) * gridSize;
         truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
 
-        Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
+        Tile tempTile = Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
+       
+        gameBoard[(int)truePos.x + 4, (int)truePos.z + +5] = tempTile;
+
     }
 
 }

@@ -5,10 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Tile currentTile;
-    Tile firstTile;
     Direction myDirection;
-
-    bool onFirstTile = true;
 
     int timer = 2;
     float counter = 0;
@@ -18,32 +15,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if(GameStateManager.Instance.currentGameState == GameState.PLAYER_MOVE)
         {
-            if (onFirstTile)
-            {
-                GetFirstTile();
-            }
-            else
-            {
-                OnMove();
-            }
+            OnMove();
         }
-    }
-
-    void GetFirstTile()
-    {
-        firstTile = gameObject.GetComponent<PlayerInventory>().selectedTile;
-        onFirstTile = false;
-            
-        myDirection = firstTile.GetCurrentDirection(this.gameObject.transform.position);
-        transform.position = firstTile.nextLandPositions[(int)myDirection];
     }
 
     private void OnMove()
     {
-        myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, currentTile.nextLandPositions[(int)myDirection], 1);
+        Vector3 boardPos = CalculateGameBoardPosition();
+        currentTile = GameBoardManager.Instance.gameBoard[(int)boardPos.x, (int)boardPos.z];
 
-        Timer();
+        if(currentTile.blankTile != 0)
+        {
+            myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, currentTile.nextLandPositions[(int)myDirection], 1);
+
+            Timer();
+        }
     }
 
     void Timer()
@@ -66,5 +53,24 @@ public class PlayerMovement : MonoBehaviour
         {
             counter += Time.deltaTime;
         }
+    }
+
+    Vector3 CalculateGameBoardPosition()
+    {
+        Vector3 tempVector = new Vector3(-10,-10,-10);
+        for(int i=0; i<10; i++)
+        {
+            int xMin = -5 + i;
+            int xMax = -5 + i + 1;
+            int zMin = -6 + i;
+            int zMax = -6 + i + 1;
+
+            if(transform.position.x >= xMin && transform.position.x <= xMax && transform.position.z >= zMin && transform.position.z <= zMax)
+            {
+                tempVector = new Vector3(xMin + 1 , 1.217f, zMin + 1);
+            }
+        }
+
+        return tempVector;
     }
 }
