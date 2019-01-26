@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardSize: 10
   tileGO: {fileID: 4924642289093760413, guid: d6ef5d9bf43941b4e95b3fe812e61c12, type: 3}
-  target: {fileID: 1639938260}
+  target: {fileID: 2133850784}
   gridSize: 1
   player: {fileID: 3203822046086411103}
   emptyTile: {fileID: 8057007619807037323, guid: f23107ff541c775448477b382f13c5fa,
@@ -344,7 +344,7 @@ MonoBehaviour:
   currentPlayer: {fileID: 0}
   currentGameState: 0
   delayTimer: 0
-  delayDuration: 2
+  delayDuration: 0.5
   playerList:
   - {fileID: 3203822046086411103}
   - {fileID: 94598104}
@@ -444,37 +444,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c3218e04db4d4cb65436981035ad3, type: 3}
---- !u!1 &1639938260
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1639938262}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1639938262
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639938260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.98, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2133850785}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1640082787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -554,27 +523,27 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1639938262}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4924642289093760413, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
         type: 3}
       propertyPath: m_Name
-      value: Tile_Test_NEw_10
+      value: Target
       objectReference: {fileID: 0}
     - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
-        type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
         type: 3}
@@ -599,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
         type: 3}
@@ -841,9 +810,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 086a4fa6985c69941874de6ca2827e52, type: 3}
---- !u!4 &2133850785 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 801943127423028466, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
+--- !u!1 &2133850784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4924642289093760413, guid: d6ef5d9bf43941b4e95b3fe812e61c12,
     type: 3}
   m_PrefabInstance: {fileID: 1643508049}
   m_PrefabAsset: {fileID: 0}
