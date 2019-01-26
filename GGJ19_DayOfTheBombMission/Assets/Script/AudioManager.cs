@@ -42,17 +42,17 @@ public class AudioManager : MonoBehaviour
 
         string sceneName = currentScene.name;
 
-        if(sceneName == "MainMenu" && !playing1)
+        if (sceneName == "MainMenu" && !playing1)
         {
             playing2 = false;
 
             Stop("BGM");
             Play("BGM");
-            
+
             playing1 = true;
         }
 
-        if(sceneName == "Level1" && !playing2)
+        if (sceneName == "Level1" && !playing2)
         {
             playing1 = false;
 
@@ -63,10 +63,43 @@ public class AudioManager : MonoBehaviour
 
         }
 
-        foreach(Sound s in sounds)
+        foreach (Sound s in sounds)
         {
             s.source.volume = s.volume;
         }
+
+        if (sceneName != "Level1")
+        {
+            Stop("Walking");
+            Stop("Explode");
+        }
+
+        /*
+          
+        if(walking)
+        {
+            if(FindObjectOfType<AudioManager>() != null)
+            {
+                FindObjectOfType<AudioManager>().Play("Walking");
+            }
+        }
+        
+        if(!walking)
+        {
+            if(FindObjectOfType<AudioManager>() != null)
+            {
+                FindObjectOfType<AudioManager>().Stop("Walking");
+            }
+        }
+
+        if(EncounteredBomb)
+        {
+            if (FindObjectOfType<AudioManager>() != null)
+            {
+                FindObjectOfType<AudioManager>().Play("Explode");
+            }
+        }
+        */
     }
 
     public void Play(string name)

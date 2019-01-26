@@ -615,6 +615,7 @@ MonoBehaviour:
   currentGameState: 0
   delayTimer: 0
   delayDuration: 2
+  playerList: []
 --- !u!4 &1489734414
 Transform:
   m_ObjectHideFlags: 0
