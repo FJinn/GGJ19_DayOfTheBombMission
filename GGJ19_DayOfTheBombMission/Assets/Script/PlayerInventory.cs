@@ -22,7 +22,7 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(this.gameObject == GameStateManager.Instance.currentPlayer)
+        if(this.gameObject.GetComponent<PlayerStatus>().playerID == GameStateManager.Instance.currentPlayerID)
         {
             if (GameStateManager.Instance.currentGameState == GameState.TILE_DISTRIBUTION)
             {   
