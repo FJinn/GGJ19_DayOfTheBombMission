@@ -24,6 +24,7 @@ public class Tile : MonoBehaviour
         RIGHT_BOTTOM
     }
 
+    SpecialEffect myEffect;
     /// <summary>
     /// 0 = no one cross, 1 = owner first crossed, 2 = activate special effect
     /// </summary>
@@ -45,6 +46,8 @@ public class Tile : MonoBehaviour
     /// 0 = top, 1 = left, 2 = down, 3 = right
     /// </summary>
     Tile[] connectedTiles = new Tile[4];
+
+  //  int currentDegree = 0;
 
 
     private void Awake()
@@ -97,8 +100,9 @@ public class Tile : MonoBehaviour
     /// get direction for nextLandPositions[(int)currentDirection]
     /// </summary>
     /// <returns></returns>
-    Direction GetCurrentDirection()
+    Direction GetCurrentDirection(Vector3 currentLocation)
     {
+        currentPosition = currentLocation;
         for(int i=0; i<landPositions.Length; i++)
         {
             if (currentPosition == landPositions[i])
@@ -108,6 +112,76 @@ public class Tile : MonoBehaviour
         }
 
         return currentDirection;
+    }
+
+    /// <summary>
+    /// Call whenever tile is rotated
+    /// </summary>
+    public void TileRotated()
+    {
+
+        landPositions[(int)Direction.TOP_LEFT] = landPositions[(int)Direction.RIGHT_TOP];
+        landPositions[(int)Direction.TOP_RIGHT] = landPositions[(int)Direction.RIGHT_BOTTOM];
+        landPositions[(int)Direction.BOTTOM_LEFT] = landPositions[(int)Direction.LEFT_TOP];
+        landPositions[(int)Direction.BOTTOM_RIGHT] = landPositions[(int)Direction.LEFT_BOTTOM];
+        landPositions[(int)Direction.LEFT_TOP] = landPositions[(int)Direction.TOP_RIGHT];
+        landPositions[(int)Direction.LEFT_BOTTOM] = landPositions[(int)Direction.TOP_LEFT];
+        landPositions[(int)Direction.RIGHT_TOP] = landPositions[(int)Direction.BOTTOM_RIGHT];
+        landPositions[(int)Direction.RIGHT_BOTTOM] = landPositions[(int)Direction.BOTTOM_LEFT];
+
+        /* since player only can rotate 90 at once, so it will do it job 
+        currentDegree += 90;
+
+        if(currentDegree >= 360 || currentDegree <= 0)
+        {
+            currentDegree = 0;
+        }
+
+        if(currentDegree == 0)
+        {
+            landPositions[(int)Direction.TOP_LEFT] = new Vector3(transform.position.x - transform.localScale.x / 4, transform.position.y, transform.position.z + transform.localScale.z / 2);
+            landPositions[(int)Direction.TOP_RIGHT] = new Vector3(transform.position.x + transform.localScale.x / 4, transform.position.y, transform.position.z + transform.localScale.z / 2);
+            landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3(transform.position.x - transform.localScale.x / 4, transform.position.y, transform.position.z - transform.localScale.z / 2);
+            landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3(transform.position.x + transform.localScale.x / 4, transform.position.y, transform.position.z - transform.localScale.z / 2);
+            landPositions[(int)Direction.LEFT_TOP] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z + transform.localScale.z / 4);
+            landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z - transform.localScale.z / 4);
+            landPositions[(int)Direction.RIGHT_TOP] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z + transform.localScale.z / 4);
+            landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3(transform.position.x - transform.localScale.x / 2, transform.position.y, transform.position.z - transform.localScale.z / 4);
+        }
+        else if (currentDegree == 90)
+        {
+            landPositions[(int)Direction.TOP_LEFT] = landPositions[(int)Direction.RIGHT_TOP];
+            landPositions[(int)Direction.TOP_RIGHT] = landPositions[(int)Direction.RIGHT_BOTTOM];
+            landPositions[(int)Direction.BOTTOM_LEFT] = landPositions[(int)Direction.LEFT_TOP];
+            landPositions[(int)Direction.BOTTOM_RIGHT] = landPositions[(int)Direction.LEFT_BOTTOM];
+            landPositions[(int)Direction.LEFT_TOP] = landPositions[(int)Direction.TOP_RIGHT];
+            landPositions[(int)Direction.LEFT_BOTTOM] = landPositions[(int)Direction.TOP_LEFT];
+            landPositions[(int)Direction.RIGHT_TOP] = landPositions[(int)Direction.BOTTOM_RIGHT];
+            landPositions[(int)Direction.RIGHT_BOTTOM] = landPositions[(int)Direction.BOTTOM_LEFT];
+        }
+        else if (currentDegree == 180)
+        {
+            landPositions[(int)Direction.TOP_LEFT] = landPositions[(int)Direction.RIGHT_TOP];
+            landPositions[(int)Direction.TOP_RIGHT] = landPositions[(int)Direction.RIGHT_BOTTOM];
+            landPositions[(int)Direction.BOTTOM_LEFT] = landPositions[(int)Direction.LEFT_TOP];
+            landPositions[(int)Direction.BOTTOM_RIGHT] = landPositions[(int)Direction.LEFT_BOTTOM];
+            landPositions[(int)Direction.LEFT_TOP] = landPositions[(int)Direction.TOP_RIGHT];
+            landPositions[(int)Direction.LEFT_BOTTOM] = landPositions[(int)Direction.TOP_LEFT];
+            landPositions[(int)Direction.RIGHT_TOP] = landPositions[(int)Direction.BOTTOM_RIGHT];
+            landPositions[(int)Direction.RIGHT_BOTTOM] = landPositions[(int)Direction.BOTTOM_LEFT];
+        }
+        else if (currentDegree == 270)
+        {
+            landPositions[(int)Direction.TOP_LEFT] = landPositions[(int)Direction.RIGHT_TOP];
+            landPositions[(int)Direction.TOP_RIGHT] = landPositions[(int)Direction.RIGHT_BOTTOM];
+            landPositions[(int)Direction.BOTTOM_LEFT] = landPositions[(int)Direction.LEFT_TOP];
+            landPositions[(int)Direction.BOTTOM_RIGHT] = landPositions[(int)Direction.LEFT_BOTTOM];
+            landPositions[(int)Direction.LEFT_TOP] = landPositions[(int)Direction.TOP_RIGHT];
+            landPositions[(int)Direction.LEFT_BOTTOM] = landPositions[(int)Direction.TOP_LEFT];
+            landPositions[(int)Direction.RIGHT_TOP] = landPositions[(int)Direction.BOTTOM_RIGHT];
+            landPositions[(int)Direction.RIGHT_BOTTOM] = landPositions[(int)Direction.BOTTOM_LEFT];
+        }
+        */
     }
 
     /// <summary>
@@ -155,6 +229,33 @@ public class Tile : MonoBehaviour
         else if (patternID == 10)
         {
             PatternTen();
+        }
+
+        InitializeSpecialEffect();
+    }
+
+    /// <summary>
+    /// initialize special effect
+    /// </summary>
+    void InitializeSpecialEffect()
+    {
+        float value = Random.value;
+
+        if(value <= 0.25)
+        {
+            myEffect = SpecialEffect.BOMB;
+        }
+        else if(value > 0.25 && value <= 0.5)
+        {
+            myEffect = SpecialEffect.LIFE;
+        }
+        else if (value > 0.5 && value <= 0.75)
+        {
+            myEffect = SpecialEffect.STUN;
+        }
+        else if (value > 0.75)
+        {
+            myEffect = SpecialEffect.NONE;
         }
     }
 
