@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int playerID;
-
     public List<Tile> tileList = new List<Tile>();
 
     private Tile selectedTile;

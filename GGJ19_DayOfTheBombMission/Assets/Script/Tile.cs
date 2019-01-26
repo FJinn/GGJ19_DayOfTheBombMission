@@ -28,9 +28,7 @@ public class Tile : MonoBehaviour
     /// 0 = no one cross, 1 = owner first crossed, 2 = activate special effect
     /// </summary>
     public int playerCrossed = 0;
-
-    public bool isStunned = false;
-
+    
     public int patternID;
 
     [SerializeField] Vector3 currentPosition;
