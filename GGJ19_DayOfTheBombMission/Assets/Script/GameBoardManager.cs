@@ -19,7 +19,8 @@ public class GameBoardManager : MonoBehaviour
     public float gridSize;
     public GameObject player;
     private bool isPlaced = false;
-    private bool isInitializedPos = false;
+
+    public Tile emptyTile;
 
     static GameBoardManager instance;
     public static GameBoardManager Instance { get { return instance; } }
@@ -45,9 +46,8 @@ public class GameBoardManager : MonoBehaviour
         {
             for(int j=0; j<boardSize; j++)
             {
-                Tile tempTile = new Tile();
-                tempTile.blankTile = 0;
-                gameBoard[i,j] = tempTile;
+                emptyTile.blankTile = 0;
+                gameBoard[i,j] = emptyTile;
                 // x = column, z = row
                 gameBoard[i, j].x = 5 - j;
                 gameBoard[i, j].z = -5 + i;
@@ -60,27 +60,11 @@ public class GameBoardManager : MonoBehaviour
         if(GameStateManager.Instance.currentGameState == GameState.TILE_PLACEMENT)
         {
             player = GameStateManager.Instance.currentPlayer;
-            if(isInitializedPos == false)
-            {
-                if (GameStateManager.Instance.currentPlayer.transform.position.z > -5)
-                {
-                    target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                    target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
-                }
-                else
-                {
-                    target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                    target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
-                }
-                isInitializedPos = true;
-            }
-            
             
             SelectPosition();
-            if (Input.GetKeyDown(KeyCode.Return) && isPlaced == false)
+            if (Input.GetKeyDown(KeyCode.Space) && isPlaced == false)
             {
                 PlaceTile();
-                isInitializedPos = false;
                 isPlaced = true;
             }
         } 
@@ -103,30 +87,30 @@ public class GameBoardManager : MonoBehaviour
 
     void SelectPosition()
     {
-        if(GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
+        int x = (int)GameStateManager.Instance.currentPlayer.transform.position.x % 1;
+        int y = (int)GameStateManager.Instance.currentPlayer.transform.position.y % 1;
+        int z = (int)GameStateManager.Instance.currentPlayer.transform.position.z % 1;
+
+        if (GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
+            target.transform.position = new Vector3(x, y, z - 1);
         }
 
         if(GameStateManager.Instance.currentPlayer.transform.position.z != 5)
         {
             if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x + 1, target.transform.position.y, target.transform.position.z);
+                target.transform.position = new Vector3(x + 1, y, z);
             }
 
             if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
             {
-                target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x - 1, target.transform.position.y, target.transform.position.z);
+                target.transform.position = new Vector3(x - 1, y,z);
             }
 
             if (GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
             {
-                target.transform.position = GameStateManager.Instance.currentPlayer.transform.position;
-                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+                target.transform.position = new Vector3(x, y,z + 1);
             }
         }
     }
@@ -144,9 +128,9 @@ public class GameBoardManager : MonoBehaviour
         //    targetPos = player.transform.position;
         //    targetPos.
         //}
-        truePos.x = Mathf.Floor(target.transform.position.x / gridSize) * gridSize;
+        truePos.x = target.transform.position.x;
         truePos.y = target.transform.position.y;
-        truePos.z = Mathf.Floor(target.transform.position.z / gridSize) * gridSize;
+        truePos.z = target.transform.position.z;
 
         Tile tempTile = Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
        
