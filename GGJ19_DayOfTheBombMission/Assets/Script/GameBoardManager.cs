@@ -40,8 +40,19 @@ public class GameBoardManager : MonoBehaviour
         if(GameStateManager.Instance.currentGameState == GameState.TILE_PLACEMENT)
         {
             player = GameStateManager.Instance.currentPlayer;
+            if(GameStateManager.Instance.currentPlayer.transform.position.z > -5)
+            {
+                target.transform.position = player.transform.position;
+                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
+            }
+            else
+            {
+                target.transform.position = player.transform.position;
+                target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+            }
+            
             SelectPosition();
-            if (Input.GetKeyDown(KeyCode.Space) && isPlaced == false)
+            if (Input.GetKeyDown(KeyCode.Return) && isPlaced == false)
             {
                 PlaceTile();
                 isPlaced = true;
@@ -66,22 +77,28 @@ public class GameBoardManager : MonoBehaviour
 
     void SelectPosition()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if(GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
         {
             target.transform.position = player.transform.position;
             target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z - 1);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             target.transform.position = player.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x+1, target.transform.position.y, target.transform.position.z - 1);
+            target.transform.position = new Vector3(target.transform.position.x+1, target.transform.position.y, target.transform.position.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
         {
             target.transform.position = player.transform.position;
-            target.transform.position = new Vector3(target.transform.position.x-1, target.transform.position.y, target.transform.position.z - 1);
+            target.transform.position = new Vector3(target.transform.position.x-1, target.transform.position.y, target.transform.position.z);
+        }
+
+        if(GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            target.transform.position = player.transform.position;
+            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
         }
     }
 
