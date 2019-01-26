@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
 
-        if(boardPos.x >=10 || boardPos.x < 0 || boardPos.z >=10 || boardPos.z < 0)
+        if(boardPos.x >10 || boardPos.x < 0 || boardPos.z >10 || boardPos.z < 0)
         {
             GameStateManager.Instance.playerList.Remove(this.gameObject);
             Destroy(gameObject);
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             float dis = Vector3.Distance(transform.position, target);
-            if (dis < 0.5f)
+            if (dis < 0.6f)
             {
                 transform.position = target;
             }

@@ -88,7 +88,7 @@ public class GameBoardManager : MonoBehaviour
     void SelectPosition()
     {
         int x = Mathf.RoundToInt(GameStateManager.Instance.currentPlayer.transform.position.x / 1);
-        int y = (int)GameStateManager.Instance.currentPlayer.transform.position.y;
+        float y = 0.55f;
         int z = Mathf.RoundToInt(GameStateManager.Instance.currentPlayer.transform.position.z / 1);
 
         if (GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
