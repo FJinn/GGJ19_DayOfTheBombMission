@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Tile currentTile;
-    public Direction myDirection;
+    [SerializeField] Tile currentTile;
+    Direction myDirection;
 
     int timer = 2;
     float counter = 0;
+    Vector3 target;
+
+    bool move = false;
 
     // Update is called once per frame
     void Update()
@@ -20,26 +23,59 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnMove()
-    {   
+    {
+        Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
+        currentTile = GameBoardManager.Instance.gameBoard[(int)boardPos.x, (int)boardPos.z];
 
-        //Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
-        //Debug.Log("BoardPos: " + boardPos);
-        //currentTile = GameBoardManager.Instance.gameBoard[(int)boardPos.x, (int)boardPos.z];
-        //Debug.Log("CurrentTile: " + currentTile);
+        if (currentTile.blankTile != 0)
+        {
+            myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
+            target = currentTile.nextLandPositions[(int)myDirection];
+            //   target = new Vector3(Mathf.RoundToInt(target.x), 1.217f, Mathf.RoundToInt(target.z) - 0.5f);
+            target = new Vector3(target.x, 2.0f, target.z);
+            //transform.position = Vector3.MoveTowards(transform.position, target, 1.0f);
+            //transform.position = target;
+            move = true;
+        }
+        if(move)
+        Moving();
+    }
 
-        //if (currentTile.blankTile != 0)
-        //{
-        //    //myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
-        //    Debug.Log("MyDirection: " + myDirection);
-        //    Vector3 target = currentTile.nextLandPositions[(int)myDirection];
-        //    Debug.Log("OldTarget: " + target);
-        //    target = new Vector3(Mathf.RoundToInt(target.x), 1.217f, Mathf.RoundToInt(target.z) - 0.5f);
-        //    Debug.Log("NewTarget: " + target);
-        //    transform.position = Vector3.MoveTowards(transform.position, target, 0.5f);
-        //    Debug.Log("position: " + transform.position);
+    void Moving()
+    {
+        if(transform.position != target)
+        {
+            if(transform.position.x > target.x)
+            {
+                transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
+            }
+            else if(transform.position.x < target.x)
+            {
+                transform.position = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.z);
+            }
+            else if (Mathf.Round(transform.position.x) == Mathf.Round(target.x))
+            {
+                transform.position = new Vector3(target.x, transform.position.y, transform.position.z);
+            }
 
-        //}
-        //Timer();
+            if (transform.position.z > target.z)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+            }
+            else if (transform.position.z < target.z)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.1f);
+            }
+            else if(Mathf.Round(transform.position.z) == Mathf.Round(target.z))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, target.z);
+            }
+        }
+        else
+        {
+            Timer();
+            move = false;
+        }
     }
 
     void Timer()

@@ -30,6 +30,7 @@ public class PlayerStatus : MonoBehaviour
                 }              
             }
         }
+        
     }
 
     void CapLifeMax()

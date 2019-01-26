@@ -138,7 +138,7 @@ public class GameBoardManager : MonoBehaviour
 
         tempTile.InitializeTile();
         tempTile.InitializePattern(tempTile.patternID);
-        GameStateManager.Instance.currentPlayer.GetComponent<PlayerMovement>().currentTile.patternID = tempTile.patternID;
+
     }
 
 }
