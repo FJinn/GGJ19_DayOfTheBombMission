@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 tempVector = new Vector3(-10,-10,-10);
         for(int i=0; i<10; i++)
         {
-            for(int j=0;j<10; j++)
+            for (int j = 0; j < 10; j++)
             {
                 int xMin = -4 + j;
                 int xMax = -4 + j + 1;
