@@ -156,25 +156,21 @@ public class Tile : MonoBehaviour
     public void PlaceTileOnTop(Tile selectedTile)
     {
         connectedTiles[0] = selectedTile;
-        selectedTile.PlaceTileOnBottom(this);
     }
 
     public void PlaceTileOnLeft(Tile selectedTile)
     {
         connectedTiles[1] = selectedTile;
-        selectedTile.PlaceTileOnRight(this);
     }
 
     public void PlaceTileOnBottom(Tile selectedTile)
     {
         connectedTiles[2] = selectedTile;
-        selectedTile.PlaceTileOnTop(this);
     }
 
     public void PlaceTileOnRight(Tile selectedTile)
     {
         connectedTiles[3] = selectedTile;
-        selectedTile.PlaceTileOnLeft(this);
     }
 
     /// <summary>

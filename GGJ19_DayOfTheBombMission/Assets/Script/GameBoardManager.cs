@@ -144,24 +144,28 @@ public class GameBoardManager : MonoBehaviour
         {
             // right
             tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 3, (int)truePos.z + 5]);
+            gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnLeft(tempTile);
         }
         if (truePos.x + 5 >= 0 && truePos.x + 5 < 10 && truePos.z + 5>= 0 && truePos.z + 5< 10
             && gameBoard[(int)truePos.x + 5, (int)truePos.z + 5].blankTile == 1)
         {
             // left
-            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 5, (int)truePos.z + 5]);
+            tempTile.PlaceTileOnLeft(gameBoard[(int)truePos.x + 5, (int)truePos.z + 5]);
+            gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnRight(tempTile);
         }
         if (truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 6 >= 0 && truePos.z + 6 < 10
             && gameBoard[(int)truePos.x + 4, (int)truePos.z + 6].blankTile == 1)
         {
             // bottom
-            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 4, (int)truePos.z + 6]);
+            tempTile.PlaceTileOnBottom(gameBoard[(int)truePos.x + 4, (int)truePos.z + 6]);
+            gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnTop(tempTile);
         }
         if (truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 4 >= 0 && truePos.z + 4 < 10
             && gameBoard[(int)truePos.x + 4, (int)truePos.z + 4].blankTile == 1)
         {
             // top
-            tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 4, (int)truePos.z + 4]);
+            tempTile.PlaceTileOnTop(gameBoard[(int)truePos.x + 4, (int)truePos.z + 4]);
+            gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnBottom(tempTile);
         }
 
 
