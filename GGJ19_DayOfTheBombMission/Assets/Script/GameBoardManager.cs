@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class GameBoardManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // 10 x10 game board consists of 100 tiles
+    
+
+    static GameBoardManager instance;
+    public static GameBoardManager Instance { get { return instance; } }
+
+    private void Awake()
     {
-        
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
