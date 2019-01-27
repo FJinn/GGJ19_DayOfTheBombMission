@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             //   target = new Vector3(Mathf.RoundToInt(target.x), 1.217f, Mathf.RoundToInt(target.z) - 0.5f);
             target = new Vector3(target.x, 2.0f, target.z);
             //transform.position = Vector3.MoveTowards(transform.position, target, 1.0f);
-            //transform.position = target;
+            transform.position = target;
             move = true;
         }
 

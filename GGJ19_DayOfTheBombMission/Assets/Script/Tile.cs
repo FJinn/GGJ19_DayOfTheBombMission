@@ -124,14 +124,14 @@ public class Tile : MonoBehaviour
 
     void InitializeLandPosition()
     {
-        landPositions[(int)Direction.TOP_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) - 0.5f);
-        landPositions[(int)Direction.TOP_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) - 0.5f);
-        landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.25f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) + 0.5f);
-        landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.25f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) + 0.5f);
-        landPositions[(int)Direction.LEFT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) - 0.25f);
-        landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) + 0.5f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) + 0.25f);
-        landPositions[(int)Direction.RIGHT_TOP] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) - 0.25f);
-        landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3(Mathf.RoundToInt(transform.position.x) - 0.5f, transform.position.y + 0.5f, Mathf.RoundToInt(transform.position.z) + 0.25f);
+        landPositions[(int)Direction.TOP_LEFT] = new Vector3((transform.position.x) + 0.25f, transform.position.y + 0.5f, (transform.position.z) - 0.5f);
+        landPositions[(int)Direction.TOP_RIGHT] = new Vector3((transform.position.x) - 0.25f, transform.position.y + 0.5f, (transform.position.z) - 0.5f);
+        landPositions[(int)Direction.BOTTOM_LEFT] = new Vector3((transform.position.x) + 0.25f, transform.position.y + 0.5f, (transform.position.z) + 0.5f);
+        landPositions[(int)Direction.BOTTOM_RIGHT] = new Vector3((transform.position.x) - 0.25f, transform.position.y + 0.5f,(transform.position.z) + 0.5f);
+        landPositions[(int)Direction.LEFT_TOP] = new Vector3((transform.position.x) + 0.5f, transform.position.y + 0.5f, (transform.position.z) - 0.25f);
+        landPositions[(int)Direction.LEFT_BOTTOM] = new Vector3((transform.position.x) + 0.5f, transform.position.y + 0.5f, (transform.position.z) + 0.25f);
+        landPositions[(int)Direction.RIGHT_TOP] = new Vector3((transform.position.x) - 0.5f, transform.position.y + 0.5f, (transform.position.z) - 0.25f);
+        landPositions[(int)Direction.RIGHT_BOTTOM] = new Vector3((transform.position.x) - 0.5f, transform.position.y + 0.5f, (transform.position.z) + 0.25f);
 
     //    Debug.Log(transform.position);
 
