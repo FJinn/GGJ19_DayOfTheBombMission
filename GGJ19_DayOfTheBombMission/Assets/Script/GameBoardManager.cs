@@ -20,6 +20,8 @@ public class GameBoardManager : MonoBehaviour
     public float gridSize;
     public GameObject player;
     private bool isPlaced = false;
+    int row = 0;
+    int col = 0;
 
     public Tile emptyTile;
 
@@ -54,6 +56,14 @@ public class GameBoardManager : MonoBehaviour
                 gameBoard[i, j].z = j;
             }
         }
+
+        for(int i=0;i<tileArray.Length;i++)
+        {
+            for(int j=0;j<tileArray.Length;j++)
+            {
+                gameBoard[i, j] = tileArray[j + i];
+            }
+        }
     }
 
     private void Update()
@@ -62,7 +72,7 @@ public class GameBoardManager : MonoBehaviour
         {
             player = GameStateManager.Instance.currentPlayer;
             
-            //SelectPosition();
+            SelectPosition();
             if (Input.GetKeyDown(KeyCode.Space) && isPlaced == false)
             {
                 PlaceTile();
@@ -86,6 +96,26 @@ public class GameBoardManager : MonoBehaviour
         }
     }
 
+    void SelectPosition()
+    { 
+        target.transform.position = GameBoardManager.instance.gameBoard[row, col].transform.position + new Vector3(0,2f,0);
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            row++;
+        }
+        else if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            col++;
+        }
+        else if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            row--;
+        }
+        else if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            col--;
+        }
+    }
     //void SelectPosition()
     //{
     //    //float x = TilePos(GameStateManager.Instance.currentPlayer.transform.position.x);
@@ -129,21 +159,23 @@ public class GameBoardManager : MonoBehaviour
         //    targetPos = player.transform.position;
         //    targetPos.
         //}
-        truePos.x = target.transform.position.x;
-        truePos.y = target.transform.position.y;
-        truePos.z = target.transform.position.z;
+        //truePos.x = target.transform.position.x;
+        //truePos.y = target.transform.position.y;
+        //truePos.z = target.transform.position.z;
 
-        Tile tempTile = Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
-       
-        if(truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 5 >= 0 && truePos.z + 5 < 10)
-        {
-            gameBoard[(int)truePos.x + 4, (int)truePos.z + 5] = tempTile;
+        //Tile tempTile = Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
 
-            tempTile.InitializeTile();
-            tempTile.InitializePattern(tempTile.patternID);
-            
+        //if(truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 5 >= 0 && truePos.z + 5 < 10)
+        //{
+        //    gameBoard[(int)truePos.x + 4, (int)truePos.z + 5] = tempTile;
 
-        }
+        //    tempTile.InitializeTile();
+        //    tempTile.InitializePattern(tempTile.patternID);
+
+
+        //}
+
+        GameBoardManager.instance.gameBoard[row, col].patternID = GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile.patternID;
 
     }
 
