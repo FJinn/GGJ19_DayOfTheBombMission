@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -988,7 +988,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1588612147}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &94598111
+--- !u!65 &94598105
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1001,7 +1001,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2311199, y: 0.1595419, z: 0.72156626}
   m_Center: {x: 0.00012845546, y: 0.022083445, z: -0.2565776}
---- !u!54 &94598112
+--- !u!54 &94598106
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10363,7 +10363,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1640082787}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1507573374
+--- !u!65 &1507573368
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10376,7 +10376,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2311199, y: 0.1595419, z: 0.72156626}
   m_Center: {x: 0.00012845546, y: 0.022083445, z: -0.2565776}
---- !u!54 &1507573375
+--- !u!54 &1507573369
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11128,6 +11128,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203822046086411103, guid: 797c3218e04db4d4cb65436981035ad3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8603783069512509011, guid: 797c3218e04db4d4cb65436981035ad3,
         type: 3}
@@ -12218,6 +12223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3203822046086411103, guid: 797c3218e04db4d4cb65436981035ad3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8603783069512509011, guid: 797c3218e04db4d4cb65436981035ad3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12357,7 +12367,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4933109741339149107, guid: d6ef5d9bf43941b4e95b3fe812e61c12, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6ef5d9bf43941b4e95b3fe812e61c12, type: 3}
 --- !u!1001 &1649188269
 PrefabInstance:
@@ -12515,6 +12526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203822046086411103, guid: 797c3218e04db4d4cb65436981035ad3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8603783069512509011, guid: 797c3218e04db4d4cb65436981035ad3,
         type: 3}
@@ -14103,7 +14119,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1687599391}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1887996970
+--- !u!65 &1887996964
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14116,7 +14132,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2311199, y: 0.1595419, z: 0.72156626}
   m_Center: {x: 0.00012845546, y: 0.022083445, z: -0.2565776}
---- !u!54 &1887996971
+--- !u!54 &1887996965
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15583,7 +15599,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7862792654676145900}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3203822046086411110
+--- !u!65 &3203822046086411104
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15596,7 +15612,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2311199, y: 0.1595419, z: 0.72156626}
   m_Center: {x: 0.00012845546, y: 0.022083445, z: -0.2565776}
---- !u!54 &3203822046086411111
+--- !u!54 &3203822046086411105
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15623,6 +15639,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203822046086411103, guid: 797c3218e04db4d4cb65436981035ad3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8603783069512509011, guid: 797c3218e04db4d4cb65436981035ad3,
         type: 3}
