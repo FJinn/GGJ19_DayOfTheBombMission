@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] Tile currentTile;
+    public Tile currentTile;
     Direction myDirection;
 
     int timer = 2;
     float counter = 0;
     Vector3 target;
+
+    int tileX, tileZ;
 
     bool move = false;
     bool runTime = false;
@@ -25,15 +27,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove()
     {
-        Vector3 boardPos = new Vector3(Mathf.RoundToInt(transform.position.x) + 4, 0, Mathf.RoundToInt(transform.position.z) +4);
+        tileX = currentTile.x;
+        tileZ = currentTile.z;
 
-        if(boardPos.x >10 || boardPos.x < 0 || boardPos.z >10 || boardPos.z < 0)
+        if(tileX > 10 || tileX < 0 || tileZ > 10 || tileZ < 0)
         {
             GameStateManager.Instance.playerList.Remove(this.gameObject);
             Destroy(gameObject);
         }
-
-        currentTile = GameBoardManager.Instance.gameBoard[(int)boardPos.x, (int)boardPos.z];
 
         if (currentTile.blankTile != 0)
         {

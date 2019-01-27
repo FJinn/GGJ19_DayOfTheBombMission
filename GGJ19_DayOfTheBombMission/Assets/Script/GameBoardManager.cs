@@ -49,6 +49,9 @@ public class GameBoardManager : MonoBehaviour
             {
                 gameBoard[i, j] = tileArray[j + i];
                 gameBoard[i, j].blankTile = 0;
+                gameBoard[i, j].ConnectTile(gameBoard);
+                gameBoard[i, j].x = i;
+                gameBoard[i, j].z = j;
             }
         }
     }
