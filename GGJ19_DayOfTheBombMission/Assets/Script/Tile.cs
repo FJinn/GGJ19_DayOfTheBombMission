@@ -63,6 +63,12 @@ public class Tile : MonoBehaviour
     /// 0 = top, 1 = left, 2 = down, 3 = right
     /// </summary>
     Tile[] connectedTiles = new Tile[4];
+    private MeshRenderer renderer;
+
+    private void Start()
+    {
+        renderer = GetComponent<MeshRenderer>();
+    }
 
     private void Update()
     {
@@ -73,6 +79,11 @@ public class Tile : MonoBehaviour
         else
         {
             GetComponent<MeshRenderer>().enabled = true;
+        }
+
+        if(patternID > 0)
+        {
+            renderer.material = GameBoardManager.Instance.materialArray[patternID - 1];
         }
     }
 

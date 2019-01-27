@@ -22,6 +22,7 @@ public class GameBoardManager : MonoBehaviour
     private bool isPlaced = false;
     int row = 0;
     int col = 0;
+    public Material[] materialArray;
 
     public Tile emptyTile;
 

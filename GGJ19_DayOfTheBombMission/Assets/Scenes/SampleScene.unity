@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1731,6 +1731,17 @@ MonoBehaviour:
   target: {fileID: 2133850784}
   gridSize: 1
   player: {fileID: 3203822046086411103}
+  materialArray:
+  - {fileID: 2100000, guid: d3bd5003ea8027e48a7ce0193c73f8d6, type: 2}
+  - {fileID: 2100000, guid: 4012b05bb9312184ba050d64d51a2728, type: 2}
+  - {fileID: 2100000, guid: 54b63b4b9e23969479dd06ba1ca5fc0b, type: 2}
+  - {fileID: 2100000, guid: b00731d767818e74cbb330733d51dfc3, type: 2}
+  - {fileID: 2100000, guid: 7b6f86ceef3ee464f900a05a645488fb, type: 2}
+  - {fileID: 2100000, guid: ed36d2f559edd614d9bb6272616695e0, type: 2}
+  - {fileID: 2100000, guid: 839b9cabc72d58b4f9143047769d1e9d, type: 2}
+  - {fileID: 2100000, guid: 43e9c7d1dd606b54694fb3380c0c33a1, type: 2}
+  - {fileID: 2100000, guid: 639e53aa3166c494eb356d2e21858174, type: 2}
+  - {fileID: 2100000, guid: 12e2167d7b122584783d416b7399d1ef, type: 2}
   emptyTile: {fileID: 8057007619807037323, guid: f23107ff541c775448477b382f13c5fa,
     type: 3}
 --- !u!4 &172437099
@@ -3412,7 +3423,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: 086a4fa6985c69941874de6ca2827e52, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f557b5161b3f40f4eaf3f042e9df1336, type: 2}
+      objectReference: {fileID: 2100000, guid: 7997d6faf4cf734409e8b4e63b15be4f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 086a4fa6985c69941874de6ca2827e52, type: 3}
 --- !u!1 &387070151 stripped
