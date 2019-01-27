@@ -110,67 +110,13 @@ public class GameBoardManager : MonoBehaviour
             col++;
         }
     }
-    //void SelectPosition()
-    //{
-    //    //float x = TilePos(GameStateManager.Instance.currentPlayer.transform.position.x);
-    //    //float y = 0.55f;
-    //    //float z = TilePos(GameStateManager.Instance.currentPlayer.transform.position.z);
-
-    //    if (GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
-    //    {
-    //        target.transform.position = new Vector3(x, y, z - 1);
-    //    }
-
-    //    if(GameStateManager.Instance.currentPlayer.transform.position.z != 5)
-    //    {
-    //        if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
-    //        {
-    //            target.transform.position = new Vector3(x + 1, y, z);
-    //        }
-
-    //        if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
-    //        {
-    //            target.transform.position = new Vector3(x - 1, y,z);
-    //        }
-
-    //        if (GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
-    //        {
-    //            target.transform.position = new Vector3(x, y,z + 1);
-    //        }
-    //    }
-    //}
 
     void PlaceTile()
     {
-        //if(Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    targetPos = player.transform.position;
-        //    targetPos.z -= 40;
-        //}
-
-        //else if(Input.GetKeyDown(KeyCode.LeftArrow))
-        //{
-        //    targetPos = player.transform.position;
-        //    targetPos.
-        //}
-        //truePos.x = target.transform.position.x;
-        //truePos.y = target.transform.position.y;
-        //truePos.z = target.transform.position.z;
-
-        //Tile tempTile = Instantiate(GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile, truePos, Quaternion.identity);
-
-        //if(truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 5 >= 0 && truePos.z + 5 < 10)
-        //{
-        //    gameBoard[(int)truePos.x + 4, (int)truePos.z + 5] = tempTile;
-
-        //    tempTile.InitializeTile();
-        //    tempTile.InitializePattern(tempTile.patternID);
-
-
-        //}
-
-        GameBoardManager.instance.gameBoard[row, col].patternID = GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile.patternID;
-        GameBoardManager.instance.gameBoard[row, col].InitializePattern(GameBoardManager.instance.gameBoard[row, col].patternID);
+        Tile tempTile = GameBoardManager.instance.gameBoard[row, col];
+        tempTile.patternID = GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile.patternID;
+        tempTile.InitializePattern(tempTile.patternID);
+        tempTile.blankTile = 1; ;
 
     }
 

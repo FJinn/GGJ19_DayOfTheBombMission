@@ -40,10 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
             target = currentTile.nextLandPositions[(int)myDirection];
-            //   target = new Vector3(Mathf.RoundToInt(target.x), 1.217f, Mathf.RoundToInt(target.z) - 0.5f);
             target = new Vector3(target.x, 2.0f, target.z);
-            //transform.position = Vector3.MoveTowards(transform.position, target, 1.0f);
-            //transform.position = target;
             move = true;
         }
 
@@ -57,7 +54,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(transform.position != target)
         {
-            if (transform.position.x > target.x)
+            if(transform.position.x <= target.x + 0.3f && transform.position.x >= target.x - 0.3f)
+            {
+                transform.position = new Vector3(target.x, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x > target.x)
             {
                 transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
             }
@@ -66,7 +67,11 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.z);
             }
 
-            if (transform.position.z > target.z)
+            if (transform.position.z <= target.z + 0.3f && transform.position.z >= target.z - 0.3f)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, target.z);
+            }
+            else if (transform.position.z > target.z)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
             }
@@ -74,12 +79,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.1f);
             }
-
-            float dis = Vector3.Distance(transform.position, target);
-            if (dis < 0.6f)
-            {
-                transform.position = target;
-            }
+            
         }
         else
         {
