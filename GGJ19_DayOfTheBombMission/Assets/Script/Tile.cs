@@ -24,6 +24,11 @@ public class Tile : MonoBehaviour
         NONE
     }
 
+    private void Awake()
+    {
+        
+    }
+
     /// <summary>
     /// 0 = blank tile, 1 = real tile
     /// </summary>

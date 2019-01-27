@@ -13,6 +13,7 @@ public class GameBoardManager : MonoBehaviour
     /// ===>>>>[x, z]
     /// </summary>
     public Tile[,] gameBoard;
+    public Tile[] tileArray;
     public GameObject tileGO;
     public GameObject target;
     Vector3 truePos;
@@ -46,11 +47,8 @@ public class GameBoardManager : MonoBehaviour
         {
             for(int j=0; j<boardSize; j++)
             {
-                emptyTile.blankTile = 0;
-                gameBoard[i,j] = emptyTile;
-                // x = column, z = row
-                gameBoard[i, j].x = 5 - j;
-                gameBoard[i, j].z = -5 + i;
+                gameBoard[i, j] = tileArray[j + i];
+                gameBoard[i, j].blankTile = 0;
             }
         }
     }
@@ -140,36 +138,7 @@ public class GameBoardManager : MonoBehaviour
 
             tempTile.InitializeTile();
             tempTile.InitializePattern(tempTile.patternID);
-
-            if (truePos.x + 3 >= 0 && truePos.x + 3 < 10 && truePos.z + 5 >= 0 && truePos.z + 5 < 10
-                && gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].blankTile == 1)
-            {
-                // right
-                tempTile.PlaceTileOnRight(gameBoard[(int)truePos.x + 3, (int)truePos.z + 5]);
-                gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnLeft(tempTile);
-            }
-            if (truePos.x + 5 >= 0 && truePos.x + 5 < 10 && truePos.z + 5 >= 0 && truePos.z + 5 < 10
-                && gameBoard[(int)truePos.x + 5, (int)truePos.z + 5].blankTile == 1)
-            {
-                // left
-                tempTile.PlaceTileOnLeft(gameBoard[(int)truePos.x + 5, (int)truePos.z + 5]);
-                gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnRight(tempTile);
-            }
-            if (truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 6 >= 0 && truePos.z + 6 < 10
-                && gameBoard[(int)truePos.x + 4, (int)truePos.z + 6].blankTile == 1)
-            {
-                // bottom
-                tempTile.PlaceTileOnBottom(gameBoard[(int)truePos.x + 4, (int)truePos.z + 6]);
-                gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnTop(tempTile);
-            }
-            if (truePos.x + 4 >= 0 && truePos.x + 4 < 10 && truePos.z + 4 >= 0 && truePos.z + 4 < 10
-                && gameBoard[(int)truePos.x + 4, (int)truePos.z + 4].blankTile == 1)
-            {
-                // top
-                tempTile.PlaceTileOnTop(gameBoard[(int)truePos.x + 4, (int)truePos.z + 4]);
-                gameBoard[(int)truePos.x + 3, (int)truePos.z + 5].PlaceTileOnBottom(tempTile);
-            }
-
+            
 
         }
 
