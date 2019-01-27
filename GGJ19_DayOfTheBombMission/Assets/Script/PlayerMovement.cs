@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     int timer = 2;
     float counter = 0;
-    Vector3 target;
+    public Vector3 target;
 
     int tileX, tileZ;
 
@@ -40,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         {
             myDirection = currentTile.GetCurrentDirection(this.gameObject.transform.position);
             target = currentTile.nextLandPositions[(int)myDirection];
-            target = new Vector3(target.x, 2.0f, target.z);
+            target = new Vector3(target.x, transform.position.y, target.z);
+            transform.position = target;
             move = true;
         }
 

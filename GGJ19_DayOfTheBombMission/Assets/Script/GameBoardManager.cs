@@ -92,7 +92,7 @@ public class GameBoardManager : MonoBehaviour
 
     void SelectPosition()
     {   
-        target.transform.position = GameBoardManager.instance.gameBoard[row, col].transform.position + new Vector3(0,2f,0);
+        target.transform.position = GameBoardManager.instance.gameBoard[row, col].transform.position + new Vector3(0,0f,0);
         
            
         if (Input.GetKeyDown(KeyCode.UpArrow))
