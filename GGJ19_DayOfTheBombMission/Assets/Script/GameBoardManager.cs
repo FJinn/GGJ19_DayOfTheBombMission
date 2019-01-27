@@ -91,23 +91,25 @@ public class GameBoardManager : MonoBehaviour
     }
 
     void SelectPosition()
-    { 
+    {   
         target.transform.position = GameBoardManager.instance.gameBoard[row, col].transform.position + new Vector3(0,2f,0);
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        
+           
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            row++;
+            if (row > 0) row--;          
         }
-        else if(Input.GetKeyDown(KeyCode.LeftArrow))
+        else if(Input.GetKeyDown(KeyCode.DownArrow))
         {
-            col--;
+            if(row <9) row++;
         }
-        else if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            row--;
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {   
+            if(col > 0) col--;
         }
-        else if(Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            col++;
+            if(col < 9) col++;
         }
     }
     //void SelectPosition()
