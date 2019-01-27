@@ -83,11 +83,24 @@ public class GameBoardManager : MonoBehaviour
         }
     }
 
+    float TilePos(float pos)
+    {
+        float newPos = pos;
+        if(newPos <=4.25f && newPos >= 3.75f)
+        {
+            newPos = 4.5f;
+        }
+        else if(newPos <= && newPos >= 3.74f)
+    
+
+        return newPos;
+    }
+
     void SelectPosition()
     {
-        int x = Mathf.RoundToInt(GameStateManager.Instance.currentPlayer.transform.position.x / 1);
+        float x = TilePos(GameStateManager.Instance.currentPlayer.transform.position.x);
         float y = 0.55f;
-        int z = Mathf.RoundToInt(GameStateManager.Instance.currentPlayer.transform.position.z / 1);
+        float z = TilePos(GameStateManager.Instance.currentPlayer.transform.position.z);
 
         if (GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
         {
