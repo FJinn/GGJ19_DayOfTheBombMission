@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             float dis = Vector3.Distance(transform.position, target);
-            if (dis < 0.5f)
+            if (dis < 0.6f)
             {
                 transform.position = target;
             }
