@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour
 
     private void Awake()
     {
-        
+        InitializeTile();
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class Tile : MonoBehaviour
     /// put currentDirection into nextLandPostisions as index
     /// </summary>
     Direction currentDirection;
-    Vector3[] landPositions = new Vector3[8];
+    public Vector3[] landPositions = new Vector3[8];
     /// <summary>
     /// index stands for the current position in terms of direction
     /// </summary>
@@ -120,7 +120,6 @@ public class Tile : MonoBehaviour
     public void InitializeTile()
     {
         InitializeLandPosition();
-        InitializeConnectedTile();
     }
 
     void InitializeLandPosition()

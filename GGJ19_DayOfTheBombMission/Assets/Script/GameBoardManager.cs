@@ -62,7 +62,7 @@ public class GameBoardManager : MonoBehaviour
         {
             player = GameStateManager.Instance.currentPlayer;
             
-            SelectPosition();
+            //SelectPosition();
             if (Input.GetKeyDown(KeyCode.Space) && isPlaced == false)
             {
                 PlaceTile();
@@ -86,48 +86,35 @@ public class GameBoardManager : MonoBehaviour
         }
     }
 
-    float TilePos(float pos)
-    {
-        float newPos = pos;
-        if(newPos <=4.25f && newPos >= 3.75f)
-        {
-            newPos = 4.5f;
-        }
-        else if(newPos <= && newPos >= 3.74f)
-    
+    //void SelectPosition()
+    //{
+    //    //float x = TilePos(GameStateManager.Instance.currentPlayer.transform.position.x);
+    //    //float y = 0.55f;
+    //    //float z = TilePos(GameStateManager.Instance.currentPlayer.transform.position.z);
 
-        return newPos;
-    }
+    //    if (GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
+    //    {
+    //        target.transform.position = new Vector3(x, y, z - 1);
+    //    }
 
-    void SelectPosition()
-    {
-        float x = TilePos(GameStateManager.Instance.currentPlayer.transform.position.x);
-        float y = 0.55f;
-        float z = TilePos(GameStateManager.Instance.currentPlayer.transform.position.z);
+    //    if(GameStateManager.Instance.currentPlayer.transform.position.z != 5)
+    //    {
+    //        if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
+    //        {
+    //            target.transform.position = new Vector3(x + 1, y, z);
+    //        }
 
-        if (GameStateManager.Instance.currentPlayer.transform.position.z > -5 && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            target.transform.position = new Vector3(x, y, z - 1);
-        }
+    //        if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
+    //        {
+    //            target.transform.position = new Vector3(x - 1, y,z);
+    //        }
 
-        if(GameStateManager.Instance.currentPlayer.transform.position.z != 5)
-        {
-            if (GameStateManager.Instance.currentPlayer.transform.position.x < 5 && Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                target.transform.position = new Vector3(x + 1, y, z);
-            }
-
-            if (GameStateManager.Instance.currentPlayer.transform.position.x > -4 && Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                target.transform.position = new Vector3(x - 1, y,z);
-            }
-
-            if (GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                target.transform.position = new Vector3(x, y,z + 1);
-            }
-        }
-    }
+    //        if (GameStateManager.Instance.currentPlayer.transform.position.z < 5 && Input.GetKeyDown(KeyCode.DownArrow))
+    //        {
+    //            target.transform.position = new Vector3(x, y,z + 1);
+    //        }
+    //    }
+    //}
 
     void PlaceTile()
     {

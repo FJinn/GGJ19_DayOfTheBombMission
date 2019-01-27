@@ -49,36 +49,15 @@ public class GameStateManager : MonoBehaviour
     }
 
     private void Start()
-    { 
+    {   
         for(int i=0;i<playerList.Count;i++)
-        {   
-            Randomize:
-                int num = Random.Range(-4, 5);
-                playerList[i].transform.position = new Vector3(num, playerList[i].transform.position.y, playerList[i].transform.position.z);
-            for (int j = 0; j < playerList.Count; j++)
-            {
-                if (i != j)
-                {
-                    if (playerList[i].transform.position.x == playerList[j].transform.position.x)
-                    {
-                        goto Randomize;
-                    }
-                }
-            }
+        {
+            int num = Random.Range(0, 10);
+            int num2 = Random.Range(2, 4);
+            playerList[i].transform.position = GameBoardManager.Instance.gameBoard[num, 0].landPositions[num2];
         }
 
-        for (int x = 0; x < playerList.Count; x++)
-        {
-            int num2 = Random.Range(0, 2);
-            if (num2 == 0)
-            {
-                playerList[x].transform.position = new Vector3(playerList[x].transform.position.x + 0.25f, playerList[x].transform.position.y, playerList[x].transform.position.z);
-            }
-            else
-            {
-                playerList[x].transform.position = new Vector3(playerList[x].transform.position.x - 0.25f, playerList[x].transform.position.y, playerList[x].transform.position.z);
-            }
-        }
+        
     }
 
     private void Update()
