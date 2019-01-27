@@ -53,14 +53,6 @@ public class GameBoardManager : MonoBehaviour
                 gameBoard[row, column].z = column;
             }
         }
-
-        for(int i=0;i<tileArray.Length;i++)
-        {
-            for(int j=0;j<tileArray.Length;j++)
-            {
-                gameBoard[i, j] = tileArray[j + i];
-            }
-        }
     }
 
     private void Start()
@@ -101,21 +93,21 @@ public class GameBoardManager : MonoBehaviour
     void SelectPosition()
     { 
         target.transform.position = GameBoardManager.instance.gameBoard[row, col].transform.position + new Vector3(0,2f,0);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             row++;
         }
-        else if(Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            col++;
-        }
         else if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            row--;
+            col--;
         }
         else if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            col--;
+            row--;
+        }
+        else if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            col++;
         }
     }
     //void SelectPosition()
@@ -178,6 +170,7 @@ public class GameBoardManager : MonoBehaviour
         //}
 
         GameBoardManager.instance.gameBoard[row, col].patternID = GameStateManager.Instance.currentPlayer.GetComponent<PlayerInventory>().selectedTile.patternID;
+        GameBoardManager.instance.gameBoard[row, col].InitializePattern(GameBoardManager.instance.gameBoard[row, col].patternID);
 
     }
 
