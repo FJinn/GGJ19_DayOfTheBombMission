@@ -64,7 +64,57 @@ public class Tile : MonoBehaviour
     /// </summary>
     Tile[] connectedTiles = new Tile[4];
 
-  //  int currentDegree = 0;
+    private void Update()
+    {
+        if(blankTile == 0)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerMovement>().currentTile = this;
+        }
+    }
+
+    public void ConnectTile(Tile[,] gameBoard)
+    {
+        for(int i=0; i<10; i++)
+        {
+            for(int j=0; j<10; j++)
+            {
+                if(gameBoard[i,j] == this)
+                {
+                    if(i > 0)
+                    {
+                        PlaceTileOnTop(gameBoard[i - 1, j]);
+                    }
+
+                    if(i < 9)
+                    {
+                        PlaceTileOnBottom(gameBoard[i+1, j]);
+                    }
+
+                    if(j > 0)
+                    {
+                        PlaceTileOnLeft(gameBoard[i, j - 1]);
+                    }
+
+                    if(j < 9)
+                    {
+                        PlaceTileOnRight(gameBoard[i, j + 1]);
+                    }
+                }
+            }
+        }
+    }
 
 
     public void InitializeTile()
