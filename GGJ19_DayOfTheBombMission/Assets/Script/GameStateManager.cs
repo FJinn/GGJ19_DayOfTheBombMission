@@ -54,7 +54,7 @@ public class GameStateManager : MonoBehaviour
         {
             int num = Random.Range(0, 10);
             int num2 = Random.Range(2, 4);
-            playerList[i].transform.position = GameBoardManager.Instance.gameBoard[num, 0].landPositions[num2];
+            playerList[i].transform.position = GameBoardManager.Instance.gameBoard[9, num].landPositions[num2];
         }
 
         

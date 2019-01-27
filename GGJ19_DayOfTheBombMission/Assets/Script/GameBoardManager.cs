@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameBoardManager : MonoBehaviour
 {
     // 10 x10 game board consists of 100 tiles
-    public int boardSize;
+    const int boardSize = 10;
     /// <summary>
     /// [j,i]
     /// i = row, j = column
@@ -36,24 +36,26 @@ public class GameBoardManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        gameBoard = new Tile[boardSize, boardSize];
+
+        // i = row, j = column
+        for (int row = 0; row < boardSize; row++)
+        {
+            for (int column = 0; column < boardSize; column++)
+            {
+                gameBoard[row, column] = tileArray[column + (row * 10)];
+                gameBoard[row, column].blankTile = 0;
+                gameBoard[row, column].ConnectTile(gameBoard);
+                gameBoard[row, column].x = row;
+                gameBoard[row, column].z = column;
+            }
+        }
     }
 
     private void Start()
     {
-        gameBoard = new Tile[boardSize, boardSize];
-
-        // i = row, j = column
-        for(int i=0; i<boardSize; i++)
-        {
-            for(int j=0; j<boardSize; j++)
-            {
-                gameBoard[i, j] = tileArray[j + i];
-                gameBoard[i, j].blankTile = 0;
-                gameBoard[i, j].ConnectTile(gameBoard);
-                gameBoard[i, j].x = i;
-                gameBoard[i, j].z = j;
-            }
-        }
+        
     }
 
     private void Update()
